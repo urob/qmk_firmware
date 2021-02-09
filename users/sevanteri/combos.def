@@ -50,6 +50,8 @@ COMB(C_WE_TAB,  KC_TAB,  MY_W,  MY_E)
 
 COMB(C_DIAERESIS,  FI_DIAE,  MY_G,  MY_T)
 COMB(C_SECT,       FI_SECT,  MY_A,  MY_Q)
+
+SUBS(C_TILDE,   "~~",   MY_R, MY_T)
 //}}}
 // left hand home row {{{
 COMB(C_EXCLAMATIONP,  FI_EXLM,  MY_A,  MY_S)
@@ -77,6 +79,10 @@ COMB(C_AT,       RALT(KC_2),     MY_X,     MY_C)
 COMB(C_DOLLAR,   RALT(KC_4),     MY_C,     MY_V)
 
 //}}}
+
+// left hand thumb {{{
+COMB(C_CODEBLK,  CODEBLK,  MY_THL2, MY_THUL2)
+// }}}
 
 
 // both hands {{{

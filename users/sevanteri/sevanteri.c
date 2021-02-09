@@ -190,6 +190,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 #ifdef COMBO_ENABLE
 bool get_combo_must_tap(uint16_t combo_idx, combo_t* combo) { // {{{
     switch (combo_idx) {
+        case C_CODEBLK:
         case C_THUMB_CTL_SFT:
         case C_THUMB_ALT_SFT:
         case C_THUMB_ALT_CTL:
