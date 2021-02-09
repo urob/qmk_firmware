@@ -1,6 +1,8 @@
 SRC += sevanteri.c
 
 SPACE_CADET_ENABLE = no
+GRAVE_ESC_ENABLE = no
+
 
 VPATH += keyboards/gboards/
 
