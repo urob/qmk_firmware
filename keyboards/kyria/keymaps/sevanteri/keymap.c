@@ -34,13 +34,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         _QWERTY_L1_______________,
         _QWERTY_L2_______________,
-        _QWERTY_L3_______________, MO(_SYMB), MO(_FUNC),
-        KC_BTN2, MY_THL4, MY_THL3, MY_THL2,   MY_THL1, 
+        _QWERTY_L3_______________, MY_THUL2, MY_THUL1,
+        KC_BTN2, MY_THL4, MY_THL3, MY_THL2,  MY_THL1, 
 
         /******/ /******/ _______________QWERTY_R1_,
         /******/ /******/ _______________QWERTY_R2_,
-        KC_SPC,  XXXXXXX, _______________QWERTY_R3_,
-        MY_THR1, MY_THR2, MY_THR3, MY_THR4, KC_PSCR
+        MY_THUR1, XXXXXXX, _______________QWERTY_R3_,
+        MY_THR1,  MY_THR2, MY_THR3, MY_THR4, KC_PSCR
     ), // }}}
     [_FUNC] = LAYOUT_stack_wrapper( // {{{
         MO(_STUF),  _________________FUNCL_L1__________________,

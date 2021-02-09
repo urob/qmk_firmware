@@ -40,11 +40,16 @@ extern uint8_t tb_brightness;
 #define  MY_THL3  KC_LGUI
 #define  MY_THL4  KC_MS_BTN1
 
+#define  MY_THUL1  MO(_FUNC)
+#define  MY_THUL2  MO(_SYMB)
+
 // right thumb keys
 #define  MY_THR1  LT(_FUNC, KC_ENT)
 #define  MY_THR2  OSM(MOD_LSFT)
 #define  MY_THR3  MO(_SYMB)
 #define  MY_THR4  RALT_T(KC_INS)
+
+#define  MY_THUR1  KC_SPACE
 
 // basic alpha keys {{{
 #define  MY_TAB WORDCAPS
