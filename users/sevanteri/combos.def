@@ -130,15 +130,15 @@ COMB(C_VIM_V,   MY_VIM_V,   MY_THL3,  MY_V)
 // }}}
 
 // alt + number for browser tabs and tmux {{{
-COMB(C_ALTN1,            LALT(KC_1),    MY_THL3,  MY_Q)
-COMB(C_ALTN2,            LALT(KC_2),    MY_THL3,  MY_W)
-COMB(C_ALTN3,            LALT(KC_3),    MY_THL3,  MY_E)
-COMB(C_ALTN4,            LALT(KC_4),    MY_THL3,  MY_R)
-COMB(C_ALTN5,            LALT(KC_5),    MY_THL3,  MY_T)
-COMB(C_ALTN6,            LALT(KC_6),    MY_THR3, MY_Y)
-COMB(C_ALTN7,            LALT(KC_7),    MY_THR3, MY_U)
-COMB(C_ALTN8,            LALT(KC_8),    MY_THR3, MY_I)
-COMB(C_ALTN9,            LALT(KC_9),    MY_THR3, MY_O)
-COMB(C_ALTN0,            LALT(KC_0),    MY_THR3, MY_P)
+COMB(C_ALTN1,            LALT(KC_1),    MY_TAB,  MY_Q)
+COMB(C_ALTN2,            LALT(KC_2),    MY_TAB,  MY_W)
+COMB(C_ALTN3,            LALT(KC_3),    MY_TAB,  MY_E)
+COMB(C_ALTN4,            LALT(KC_4),    MY_TAB,  MY_R)
+COMB(C_ALTN5,            LALT(KC_5),    MY_TAB,  MY_T)
+COMB(C_ALTN6,            LALT(KC_6),    MY_QUOT, MY_Y)
+COMB(C_ALTN7,            LALT(KC_7),    MY_QUOT, MY_U)
+COMB(C_ALTN8,            LALT(KC_8),    MY_QUOT, MY_I)
+COMB(C_ALTN9,            LALT(KC_9),    MY_QUOT, MY_O)
+COMB(C_ALTN0,            LALT(KC_0),    MY_QUOT, MY_P)
 //}}}
 //}}}
