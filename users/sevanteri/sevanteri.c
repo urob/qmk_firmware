@@ -195,6 +195,8 @@ bool get_combo_must_tap(uint16_t combo_idx, combo_t* combo) { // {{{
         case C_THUMB_ALT_SFT:
         case C_THUMB_ALT_CTL:
             return false;
+        case C_EXCLAMATIONP:
+            return true;
     }
     switch (combo->keycode) {
         case QK_TAP_DANCE...QK_TAP_DANCE_MAX:
