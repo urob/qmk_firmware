@@ -117,7 +117,7 @@ SUBS(C_dunder,  "____" SLEFT SLEFT,           MY_THL2,  MY_MINS)
 // }}}
 
 // randoms {{{
-COMB(C_MUTE,   KC_MUTE,  KC_VOLU,  KC_VOLD)
+COMB(C_MUTE,   KC_MUTE,  MY_QUOT,  MY_AE)
 
 COMB(C_VIM_S,   MY_VIM_S,   MY_THL3,  MY_S)
 COMB(C_VIM_C,   MY_VIM_C,   MY_THL3,  MY_C)
