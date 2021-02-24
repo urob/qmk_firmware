@@ -2,6 +2,8 @@
 
 #include <stdbool.h>
 
+/* This particular implementation is by @dnaq at splitkb.com discord. Idea originally from @iaap, also at splitkb.com discord. */
+
 static bool caps_word_enabled = false;
 void caps_word_enable(void) {
     caps_word_enabled = true;
