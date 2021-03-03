@@ -147,7 +147,7 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) { // {{
     switch (keycode) {
         case LCTL_T(KC_ESC):
         case MY_THL1:
-        case MY_THL2:
+        /* case MY_THL2: */
         case MY_THL3:
         case MY_THR2:
             return false;
