@@ -139,7 +139,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) { // {{{
     }
 #endif
 
-    process_caps_word(keycode, record);
+    if (!process_caps_word(keycode, record)) {
+        return false;
+    }
     return process_record_keymap(keycode, record);
 } // }}}
 
