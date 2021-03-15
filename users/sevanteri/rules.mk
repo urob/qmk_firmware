@@ -1,4 +1,5 @@
-SRC += sevanteri.c
+SRC += sevanteri.c \
+       caps_word.c
 
 SPACE_CADET_ENABLE = no
 GRAVE_ESC_ENABLE = no

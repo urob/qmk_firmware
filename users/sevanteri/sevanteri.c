@@ -3,7 +3,7 @@
 #include "sevanteri.h"
 #include "sendstring_finnish.h"
 #include "keymap_finnish.h"
-#include "caps_word.c"
+#include "caps_word.h"
 
 #ifdef POINTING_DEVICE_ENABLE
 #include "pointing_device.h"
@@ -111,7 +111,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) { // {{{
             return false;
         case WORDCAPS:
             if (pressed) return false;
-            caps_word_toggle();
+            toggle_caps_word();
             return false;
     }
 
