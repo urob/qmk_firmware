@@ -1,12 +1,10 @@
 // right hand top row {{{
 COMB(C_CTRLSIX,   LCTL(KC_6),     MY_H,  MY_Y)
 COMB(C_ARING,     FI_ARNG,        MY_H,  MY_U)
-COMB(C_PLUS,      FI_PLUS,        MY_O,  MY_L)
+COMB(C_PLUS,      FI_PLUS,        MY_P,  MY_OE)
 COMB(C_QUOT,      FI_QUOT,        MY_I,  MY_O)
 COMB(C_ASTERISK,  LSFT(FI_QUOT),  MY_U,  MY_I,  MY_O)
 COMB(C_ACUT,      FI_ACUT,        MY_I,  MY_L)
-
-COMB(C_DIAERESISR,  FI_DIAE,  MY_OE,  MY_P)
 
 //}}}
 // right hand home row {{{
@@ -27,11 +25,6 @@ COMB(C_EQUALS,   LSFT(KC_0),  MY_L,  MY_OE)
 COMB(C_SQUAREBRACERIGHT,  RALT(KC_9),  MY_M,  MY_DOT)
 COMB(C_PARENRIGHT,        LSFT(KC_9),  MY_J,  MY_K,  MY_L)
 COMB(C_CURLYBRACERIGHT,   RALT(KC_0),  MY_J,  MY_L)
-
-COMB(C_WBAK,      KC_WBAK,        MY_THR2, MY_H)
-COMB(C_NEXTTAB,   CTRLTAB,        MY_THR2, MY_J)
-COMB(C_PREVTAB,   CSFTTAB,        MY_THR2, MY_K)
-COMB(C_WFWD,      KC_WFWD,        MY_THR2, MY_L)
 
 //}}}
 // right hand bottom row {{{
@@ -148,3 +141,13 @@ COMB(C_ALTN9,            LALT(KC_9),    MY_QUOT, MY_O)
 COMB(C_ALTN0,            LALT(KC_0),    MY_QUOT, MY_P)
 //}}}
 //}}}
+
+// vertical combos {{{
+COMB(C_VERT_PLACEHOLDER, KC_NO, 1, 2)
+
+COMB(C_NEXTTAB,   CTRLTAB,        MY_K, MY_COMM)
+COMB(C_PREVTAB,   CSFTTAB,        MY_K, MY_I)
+COMB(C_WBAK,      KC_WBAK,        MY_U, MY_J)
+COMB(C_WFWD,      KC_WFWD,        MY_O, MY_L)
+
+// }}}
