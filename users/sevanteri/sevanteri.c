@@ -3,7 +3,7 @@
 #include "sevanteri.h"
 #include "sendstring_finnish.h"
 #include "keymap_finnish.h"
-#include "caps_word.h"
+#include "casemodes.h"
 
 #ifdef POINTING_DEVICE_ENABLE
 #include "pointing_device.h"
@@ -110,9 +110,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) { // {{{
             tap_code16(KC_END);
             return false;
         case WORDCAPS:
-            if (pressed) return false;
-            toggle_caps_word();
+            if (pressed) {
+                enable_xcase();
+                return false;
+            } else {
+                if (!xcase_enabled()) {
+                    disable_xcase();
+                    toggle_caps_word();
+                }
             return false;
+            }
     }
 
 #ifdef POINTING_DEVICE_ENABLE
@@ -139,11 +146,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) { // {{{
     }
 #endif
 
-    if (!process_caps_word(keycode, record)) {
+    if (!process_case_modes(keycode, record)) {
         return false;
     }
     return process_record_keymap(keycode, record);
 } // }}}
+
+
+bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
+    switch (keycode) {
+        // Keycodes to ignore (don't disable caps word)
+
+        case KC_A ... KC_Z:
+        case KC_1 ... KC_0:
+            // If mod chording disable the mods
+            if (record->event.pressed && (get_mods() != 0)) {
+                return true;
+            }
+            return false;
+
+        case KC_ESC:
+        case KC_ENT:
+        case KC_TAB:
+        case KC_SPC:
+            return true;
+    }
+
+    return false;
+}
+
 
 bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) { // {{{
     switch (keycode) {
