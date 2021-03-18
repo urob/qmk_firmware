@@ -217,7 +217,7 @@ void pointing_device_task() {
                 raw_hid_send(msg, RAW_EPSIZE);
 #endif
 
-            } else if (state.x || state.y) {
+            } else if ((state.x || state.y) && !state.button_down) {
 
                 if (!mouse_auto_layer_timer && !layer_state_is(_FUNC)) {
                     layer_on(_MOUS);
