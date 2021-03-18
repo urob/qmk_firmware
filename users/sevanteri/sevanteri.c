@@ -229,6 +229,7 @@ bool get_combo_must_tap(uint16_t combo_idx, combo_t* combo) { // {{{
         case C_THUMB_ALT_CTL:
             return false;
         case C_EXCLAMATIONP:
+        case C_ACUT:
             return true;
     }
     switch (combo->keycode) {

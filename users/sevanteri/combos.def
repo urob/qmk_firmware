@@ -1,7 +1,6 @@
 // right hand top row {{{
 COMB(C_CTRLSIX,   LCTL(KC_6),     MY_H,  MY_Y)
 COMB(C_ARING,     FI_ARNG,        MY_H,  MY_U)
-COMB(C_PLUS,      FI_PLUS,        MY_P,  MY_OE)
 COMB(C_QUOT,      FI_QUOT,        MY_I,  MY_O)
 COMB(C_ASTERISK,  LSFT(FI_QUOT),  MY_U,  MY_I,  MY_O)
 COMB(C_ACUT,      FI_ACUT,        MY_I,  MY_L)
@@ -40,9 +39,6 @@ SUBS(C_DOTDOTSLASH,  "../",    MY_THR2,  MY_DOT)
 
 // left hand top row {{{
 COMB(C_WE_TAB,  KC_TAB,  MY_W,  MY_E)
-
-COMB(C_DIAERESIS,  FI_DIAE,  MY_G,  MY_T)
-COMB(C_SECT,       FI_SECT,  MY_A,  MY_Q)
 
 SUBS(C_TILDE,   "~~",   MY_R, MY_T)
 //}}}
@@ -145,9 +141,16 @@ COMB(C_ALTN0,            LALT(KC_0),    MY_QUOT, MY_P)
 // vertical combos {{{
 COMM(C_VERT_PLACEHOLDER)
 
+// right hand
 COMB(C_NEXTTAB,   CTRLTAB,        MY_K, MY_COMM)
 COMB(C_PREVTAB,   CSFTTAB,        MY_K, MY_I)
 COMB(C_WBAK,      KC_WBAK,        MY_U, MY_J)
 COMB(C_WFWD,      KC_WFWD,        MY_O, MY_L)
+
+COMB(C_PLUS,      FI_PLUS,        MY_P,  MY_OE)
+
+// left hand
+COMB(C_DIAERESIS,  FI_DIAE,  MY_G,  MY_T)
+COMB(C_SECT,       FI_SECT,  MY_A,  MY_Q)
 
 // }}}
