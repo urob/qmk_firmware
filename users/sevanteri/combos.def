@@ -143,7 +143,7 @@ COMB(C_ALTN0,            LALT(KC_0),    MY_QUOT, MY_P)
 //}}}
 
 // vertical combos {{{
-COMB(C_VERT_PLACEHOLDER, KC_NO, 1, 2)
+COMM(C_VERT_PLACEHOLDER)
 
 COMB(C_NEXTTAB,   CTRLTAB,        MY_K, MY_COMM)
 COMB(C_PREVTAB,   CSFTTAB,        MY_K, MY_I)
