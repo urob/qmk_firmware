@@ -27,9 +27,19 @@
  *   snake_case and SCREAMING_SNAKE_CASE
  * - @baffalop came up with the idea for xcase, which he implements in his own
  *   repo, however this is implemented by @iaap with support also for one-shot-shift.
- * - @sevanteri fixed xcase waiting mode to allow more modified keys and keys from other layers.
+ * - @sevanteri
+ *     - fixed xcase waiting mode to allow more modified keys and keys from other layers.
+ *     - Added @baffalop's separator defaulting on first keypress, with a
+ *       configurable default separator and overrideable function to determine
+ *       if the default should be used.
  */
 
+
+#ifndef DEFAULT_XCASE_SEPARATOR
+#define DEFAULT_XCASE_SEPARATOR KC_UNDS
+#endif
+
+#define IS_OSM(keycode) (keycode >= QK_ONE_SHOT_MOD && keycode <= QK_ONE_SHOT_MOD_MAX)
 
 // enum for the xcase states
 enum xcase_state {
@@ -163,14 +173,25 @@ bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
         return false;
 }
 
-static inline bool is_one_shot_mod(uint16_t keycode) {
-    return keycode >= QK_ONE_SHOT_MOD && keycode <= QK_ONE_SHOT_MOD_MAX;
+/* overrideable function to determine whether to use the default separator on
+ * first keypress when waiting for the separator. */
+__attribute__ ((weak))
+bool use_default_xcase_separator(uint16_t keycode, const keyrecord_t *record) {
+    // for example:
+    /* switch (keycode) { */
+    /*     case KC_A ... KC_Z: */
+    /*     case KC_1 ... KC_0: */
+    /*         return true; */
+    /* } */
+    return false;
 }
 
 bool process_case_modes(uint16_t keycode, const keyrecord_t *record) {
     if (xcase_state == XCASE_WAIT) {
         // grab the next input to be the delimiter
-        if (record->event.pressed) {
+        if (use_default_xcase_separator(keycode, record)) {
+            enable_xcase_with(DEFAULT_XCASE_SEPARATOR);
+        } else if (record->event.pressed) {
             if (keycode > QK_MODS_MAX || IS_MOD(keycode)) {
                 // let special keys and normal modifiers go through
                 return true;
@@ -186,7 +207,7 @@ bool process_case_modes(uint16_t keycode, const keyrecord_t *record) {
             }
             return false;
         } else {
-            if (is_one_shot_mod(keycode)) {
+            if (IS_OSM(keycode)) {
                 // this catches the OSM release if no other key was pressed
                 set_oneshot_mods(0);
                 enable_xcase_with(keycode);
@@ -194,7 +215,9 @@ bool process_case_modes(uint16_t keycode, const keyrecord_t *record) {
             // let other special keys go through
             return true;
         }
-    } else if (caps_word_on || xcase_state) {
+    }
+
+    if (caps_word_on || xcase_state) {
         // Get the base keycode of a mod or layer tap key
         switch (keycode) {
             case QK_MOD_TAP ... QK_MOD_TAP_MAX:
@@ -235,7 +258,7 @@ bool process_case_modes(uint16_t keycode, const keyrecord_t *record) {
                 else if (distance_to_last_delim >= 0) {
                     // puts back a one shot delimiter if you we're back to the delimiter pos
                     if (distance_to_last_delim == 0 &&
-                        (is_one_shot_mod(xcase_delimiter))) {
+                        (IS_OSM(xcase_delimiter))) {
                         place_delimiter();
                     }
                     ++distance_to_last_delim;

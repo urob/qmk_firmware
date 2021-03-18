@@ -152,7 +152,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) { // {{{
     return process_record_keymap(keycode, record);
 } // }}}
 
-
 bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
     switch (keycode) {
         // Keycodes to ignore (don't disable caps word)
