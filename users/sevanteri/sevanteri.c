@@ -110,16 +110,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) { // {{{
             tap_code16(KC_END);
             return false;
         case WORDCAPS:
-            if (pressed) {
+            if (pressed && !xcase_enabled()) {
                 enable_xcase();
-                return false;
-            } else {
-                if (!xcase_enabled()) {
+            } else if (!pressed) {
+                if (xcase_waiting()) {
                     disable_xcase();
                     toggle_caps_word();
                 }
-            return false;
             }
+            return false;
     }
 
 #ifdef POINTING_DEVICE_ENABLE
@@ -152,7 +151,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) { // {{{
     return process_record_keymap(keycode, record);
 } // }}}
 
-bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
+bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) { // {{{
     switch (keycode) {
         // Keycodes to ignore (don't disable caps word)
 
@@ -172,8 +171,7 @@ bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
     }
 
     return false;
-}
-
+} // }}}
 
 bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) { // {{{
     switch (keycode) {
