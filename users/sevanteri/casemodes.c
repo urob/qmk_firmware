@@ -187,6 +187,17 @@ bool use_default_xcase_separator(uint16_t keycode, const keyrecord_t *record) {
 }
 
 bool process_case_modes(uint16_t keycode, const keyrecord_t *record) {
+    // Get the base keycode of a mod or layer tap key
+    switch (keycode) {
+        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+        case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
+            // Strip the keycode only if it was tapped.
+            if (record->tap.count)
+                keycode = keycode & 0xFF;
+            break;
+    }
+
     if (xcase_state == XCASE_WAIT) {
         // grab the next input to be the delimiter
         if (use_default_xcase_separator(keycode, record)) {
@@ -211,6 +222,7 @@ bool process_case_modes(uint16_t keycode, const keyrecord_t *record) {
                 // this catches the OSM release if no other key was pressed
                 set_oneshot_mods(0);
                 enable_xcase_with(keycode);
+                return false;
             }
             // let other special keys go through
             return true;
@@ -218,20 +230,6 @@ bool process_case_modes(uint16_t keycode, const keyrecord_t *record) {
     }
 
     if (caps_word_on || xcase_state) {
-        // Get the base keycode of a mod or layer tap key
-        switch (keycode) {
-            case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-            case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-            case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
-                // Earlier return if this has not been considered tapped yet
-                if (record->tap.count == 0)
-                    return true;
-                keycode = keycode & 0xFF;
-                break;
-            default:
-                break;
-        }
-
         if (record->event.pressed) {
             // handle xcase mode
             if (xcase_state == XCASE_ON) {
