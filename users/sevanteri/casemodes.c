@@ -191,7 +191,6 @@ uint16_t strip_modtaps(uint16_t keycode, const keyrecord_t *record) {
     switch (keycode) {
         case QK_MOD_TAP ... QK_MOD_TAP_MAX:
         case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-        case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
             // Strip the keycode only if it was tapped.
             if (record->tap.count)
                 return keycode & 0xFF;
