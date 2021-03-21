@@ -1,5 +1,4 @@
 // right hand top row {{{
-COMB(C_CTRLSIX,   LCTL(KC_6),     MY_H,  MY_Y)
 COMB(C_ARING,     FI_ARNG,        MY_H,  MY_U)
 COMB(C_QUOT,      FI_QUOT,        MY_I,  MY_O)
 COMB(C_ASTERISK,  LSFT(FI_QUOT),  MY_U,  MY_I,  MY_O)
@@ -16,8 +15,8 @@ COMB(C_GREATERTHAN,  TD(TD_LGUI_RABK),  MY_K,  MY_L)
 COMB(C_SLASH,      TD(TD_LCTL_SLASH),  MY_J,     MY_K)
 COMB(C_BACKSLASH,  RALT(FI_PLUS),      MY_THR2,  MY_J,  MY_K)
 
-COMB(C_QUESTION,         LSFT(FI_PLUS),  MY_THR2,  MY_L,  MY_OE)
-COMB(C_QUESTION2,        LSFT(FI_PLUS),  MY_THR2,  MY_OE)
+
+COMB(C_QUESTION,   LSFT(FI_PLUS),  MY_THR2,  MY_OE)
 
 COMB(C_EQUALS,   LSFT(KC_0),  MY_L,  MY_OE)
 
@@ -69,11 +68,6 @@ COMB(C_DOLLAR,   RALT(KC_4),     MY_C,     MY_V)
 
 //}}}
 
-// left hand thumb {{{
-COMB(C_CODEBLK,  CODEBLK,  MY_THL2, MY_THUL2)
-// }}}
-
-
 // both hands {{{
 COMB(C_SLEEP,  KC_SLEP,  MY_Q,     MY_P)
 COMB(C_WAKE,   KC_WAKE,  MY_W,     MY_O)
@@ -95,9 +89,9 @@ SUBS(C_IAPO,  "I'",  MY_THR2, MY_I, MY_O)
 
 // python
 
-SUBS(C_IMPORT,  "import ",  MY_THL2,  MY_I)
-SUBS(C_FROM,    "from ",    MY_THR2,  MY_F)
-SUBS(C_class,   "class ",   MY_THR2,  MY_C)
+SUBS(C_IMPORT,  "import",  MY_THL2,  MY_I)
+SUBS(C_FROM,    "from",    MY_THR2,  MY_F)
+SUBS(C_class,   "class",   MY_THR2,  MY_C)
 SUBS(C_self,    "self",    MY_THR2,  MY_S)
 
 SUBS(C_def,     "def ():" SLEFT SLEFT SLEFT,  MY_THR2,  MY_D)
@@ -142,6 +136,8 @@ COMB(C_ALTN0,            LALT(KC_0),    MY_QUOT, MY_P)
 COMM(C_VERT_PLACEHOLDER)
 
 // right hand
+COMB(C_CTRLSIX,   LCTL(KC_6),     MY_H,  MY_Y)
+
 COMB(C_NEXTTAB,   CTRLTAB,        MY_K, MY_COMM)
 COMB(C_PREVTAB,   CSFTTAB,        MY_K, MY_I)
 COMB(C_WBAK,      KC_WBAK,        MY_U, MY_J)
@@ -152,5 +148,9 @@ COMB(C_PLUS,      FI_PLUS,        MY_P,  MY_OE)
 // left hand
 COMB(C_DIAERESIS,  FI_DIAE,  MY_G,  MY_T)
 COMB(C_SECT,       FI_SECT,  MY_A,  MY_Q)
+
+// left hand thumb
+COMB(C_CODEBLK,  CODEBLK,  MY_THL2, MY_THUL2)
+
 
 // }}}
