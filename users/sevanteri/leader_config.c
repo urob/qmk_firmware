@@ -14,12 +14,6 @@ uint16_t pending_operator = 0;
 // the mode to return to after the pending operator
 void* return_to = NORMAL;
 
-typedef enum {
-    LEFT,
-    RIGHT
-} last_movement_t;
-last_movement_t last_movement = RIGHT;
-
 void tap(uint16_t kc) {
     if (select_on) kc = S(kc);
     tap_code16(kc);
@@ -31,11 +25,9 @@ void tap(uint16_t kc) {
 
 #define h do_( \
     tap(KC_LEFT); \
-    last_movement = LEFT; \
 )
 #define l do_( \
     tap(KC_RIGHT); \
-    last_movement = RIGHT; \
 )
 
 #define j tap(KC_DOWN)
@@ -46,28 +38,23 @@ void tap(uint16_t kc) {
     tap(LCTL(KC_RIGHT)); \
     tap(LCTL(KC_RIGHT)); \
     tap(LCTL(KC_LEFT)); \
-    last_movement = RIGHT; \
 )
 
 #define e do_( \
     tap(LCTL(KC_RIGHT)); \
-    last_movement = RIGHT; \
 )
 #define b do_( \
     tap(LCTL(KC_LEFT)); \
-    last_movement = LEFT; \
 )
 #define end do_( \
     tap(KC_END); \
-    last_movement = RIGHT; \
 )
 #define home do_( \
     tap(KC_HOME); \
-    last_movement = LEFT; \
 )
 
-#define vdn do {select_on = true;} while(0)
-#define vup do {select_on = false;} while(0)
+#define vdn do_(select_on = true;)
+#define vup do_(select_on = false;)
 #define v(s) do_( \
     vdn; s; vup; \
 )
@@ -82,7 +69,6 @@ void tap(uint16_t kc) {
 void reset(void) {
     if (select_on) {
         vup;
-        /* if (last_movement == LEFT) h; else l; */
     }
     select_on = false;
     pending_operator = 0;
@@ -187,10 +173,12 @@ void* leader_start_func(uint16_t keycode) {
 
         case KC_A:
         case KC_I:
-            if (!pending_operator || select_on) TO_INSERT;
-            else {
+            if (pending_operator) {
                 return leader_text_obj;
+            } else {
+                TO_INSERT;
             }
+
 
         case S(KC_A):
             vup; end; TO_INSERT;

@@ -99,8 +99,13 @@ bool process_leader(uint16_t keycode, const keyrecord_t *record) {
     if (!leading) return true;
     const bool pressed = record->event.pressed;
 
-    if ((keycode > QK_MODS_MAX || IS_MOD(keycode)) && pressed) {
-        // early exit for special and modifier key presses.
+    if (IS_MOD(keycode)) {
+        // let modifiers always through
+        return true;
+    }
+
+    if (keycode > QK_MODS_MAX && pressed) {
+        // early exit for special key presses.
         return true;
     }
 
