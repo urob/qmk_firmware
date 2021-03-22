@@ -96,28 +96,17 @@ void stop_leading(void) {
 
 // Process keycode for leader sequences
 bool process_leader(uint16_t keycode, const keyrecord_t *record) {
-    if (!leading) return true;
+    if (!leading || IS_MOD(keycode)) return true;
     const bool pressed = record->event.pressed;
 
-    if (IS_MOD(keycode)) {
-        // let modifiers always through
-        return true;
-    }
-
-    if (keycode > QK_MODS_MAX && pressed) {
-        // early exit for special key presses.
-        return true;
-    }
-
     if (
-            ((keycode > QK_MODS_MAX || IS_MOD(keycode)) && !pressed)
-            || pressed
+            ((keycode > QK_MODS_MAX) && !pressed) // special keys on release
+            || pressed // normal keys on press
         ) {
         // Get the base keycode of a mod or layer tap key
         switch (keycode) {
             case QK_MOD_TAP ... QK_MOD_TAP_MAX:
             case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-            case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
                 // Earlier return if this has not been considered tapped yet
                 if (record->tap.count == 0)
                     return true;
@@ -125,6 +114,10 @@ bool process_leader(uint16_t keycode, const keyrecord_t *record) {
                 break;
             default:
                 break;
+        }
+        if (keycode > QK_MODS_MAX) {
+            // early exit for other special key presses.
+            return true;
         }
         // early exit if the esc key was hit
         if (keycode == LEADER_ESC_KEY) {
