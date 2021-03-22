@@ -96,7 +96,18 @@ void stop_leading(void) {
 
 // Process keycode for leader sequences
 bool process_leader(uint16_t keycode, const keyrecord_t *record) {
-    if (leading && record->event.pressed) {
+    if (!leading) return true;
+    const bool pressed = record->event.pressed;
+
+    if ((keycode > QK_MODS_MAX || IS_MOD(keycode)) && pressed) {
+        // early exit for special and modifier key presses.
+        return true;
+    }
+
+    if (
+            ((keycode > QK_MODS_MAX || IS_MOD(keycode)) && !pressed)
+            || pressed
+        ) {
         // Get the base keycode of a mod or layer tap key
         switch (keycode) {
             case QK_MOD_TAP ... QK_MOD_TAP_MAX:
