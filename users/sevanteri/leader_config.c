@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "sevanteri.h"
+#include "casemodes.h"
 
 #define INSERT NULL
 #define NORMAL leader_start_func
@@ -101,6 +102,23 @@ void* await_operator(uint16_t oper, void* ret) {
     return NORMAL;
 }
 
+void* leader_g(uint16_t keycode) {
+    switch (keycode) {
+        case KC_S:
+            enable_xcase_with(FI_UNDS);
+            break;
+        case S(KC_S):
+            enable_caps_word();
+            enable_xcase_with(FI_UNDS);
+            break;
+
+        case KC_C:
+            enable_caps_word();
+            break;
+    }
+    return INSERT;
+}
+
 void* leader_start_func(uint16_t keycode) {
     uint8_t mods = get_mods();
     if (mods & MOD_MASK_SHIFT) {
@@ -115,6 +133,10 @@ void* leader_start_func(uint16_t keycode) {
         case KC_U:
             tap_code16(LCTL(KC_Z));
             TO_NORMAL;
+
+        case KC_G:
+            reset();
+            return leader_g;
         // }}}
         // movement {{{
         case KC_H: tap(KC_LEFT); break;
