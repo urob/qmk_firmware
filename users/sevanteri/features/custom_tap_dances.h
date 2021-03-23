@@ -55,5 +55,19 @@ void thr_fin(qk_tap_dance_state_t* state, void* user_data);
 void thr_reset(qk_tap_dance_state_t* state, void* user_data);
 #define ACTION_TAP_DANCE_TAP_HOLD_RELEASE(_keycode, _on_hold, _on_release) { \
     .fn = {NULL, thr_fin, thr_reset, tap_release}, \
-    .user_data = (void*)&((tap_hold_release_t){.keycode=_keycode, .on_hold=_on_hold, .on_release=_on_release}) \
+    .user_data = (void*)&((tap_hold_release_t){ \
+            .keycode=_keycode, \
+            .on_hold=_on_hold, \
+            .on_release=_on_release \
+            }) \
 }
+
+
+/* sentence ending */
+typedef struct {
+    uint16_t keycode;
+} sentence_end_key;
+void sentence_end_tap(qk_tap_dance_state_t *state, void *user_data);
+void sentence_end_fin(qk_tap_dance_state_t *state, void *user_data);
+#define SENTENCE_END_TAP_DANCE(on_tap, on_finished, on_reset, user_user_data) \
+        { .fn = {on_tap, on_finished, on_reset}, .user_data = (void*)&((sentence_end_key){.keycode=user_user_data}), }
