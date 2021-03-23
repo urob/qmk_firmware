@@ -15,7 +15,13 @@
  */
 
 
-// merge/cherry-pick this first: https://github.com/sevanteri/qmk_firmware/commit/861cbd20303f5d93537a7904879a3f9f7e1ea5c5
+/* ALARM! HÄLYTYS! Some of these require modifications to tap dance processing
+ * to handle tap releases in addition to handling tap presses.
+ * The modifications can be found at https://github.com/sevanteri/qmk_firmware/commit/861cbd20303f5d93537a7904879a3f9f7e1ea5c5
+ *
+ * The changes are not big and should be easy to `git cherry-pick`.
+ * */
+
 
 #include QMK_KEYBOARD_H
 #include "custom_tap_dances.h"
