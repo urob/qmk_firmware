@@ -1,4 +1,8 @@
+<<<<<<< HEAD:keyboards/cutie_club/giant_macro_pad/keymaps/via/config.h
 /* Copyright 2021 Cutie Club
+=======
+/* Copyright 2021 Dave Vandyke <kzar@kzar.co.uk>
+>>>>>>> combos/master:keyboards/kinesis/kint36/keymaps/kzar/config.h
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,4 +20,8 @@
 
 #pragma once
 
+<<<<<<< HEAD:keyboards/cutie_club/giant_macro_pad/keymaps/via/config.h
 #define DYNAMIC_KEYMAP_LAYER_COUNT 1
+=======
+#undef LED_COMPOSE_PIN
+>>>>>>> combos/master:keyboards/kinesis/kint36/keymaps/kzar/config.h
