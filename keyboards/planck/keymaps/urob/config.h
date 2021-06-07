@@ -6,21 +6,13 @@
 
 #endif
 
-/*
- * MIDI options
- */
-
-/* enable basic MIDI features:
-   - MIDI notes can be sent when in Music mode is on
-*/
-
 #define MIDI_BASIC
 
 // Home row mods settings //
 
 // Configure the default tapping term.
 #undef TAPPING_TERM
-#define TAPPING_TERM 220
+#define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY // See bottom of keymap.c
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
@@ -33,14 +25,16 @@
 #define PERMISSIVE_HOLD_PER_KEY
 
 // Ignore same-hand mods.
-#define BILATERAL_COMBINATIONS 300
+#define BILATERAL_COMBINATIONS 350
 
 // Recommended for heavy chording.
 #define QMK_KEYS_PER_SCAN 4
 
-// Other settings
-#define COMBO_TERM 25
-#define COMBO_COUNT 5
+// Combos
+#define COMBO_TERM 20
+#define COMBO_MUST_TAP_PER_COMBO
+// #define COMBO_STRICT_TIMER
+#define COMBO_VARIABLE_LEN
 
 // Configure unicode for use with WinCompose. 
 #define UNICODE_SELECTED_MODES UC_WINC

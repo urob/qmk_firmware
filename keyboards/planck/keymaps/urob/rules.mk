@@ -4,6 +4,6 @@ COMBO_ENABLE = yes
 
 # Load the necessary external C files if and only if
 # the associated config option has been enabled
-# ifeq ($(strip $(COMBO_ENABLE)), yes)
-# 	SRC += combos.c
-# endif
+ifeq ($(strip $(COMBO_ENABLE)), yes)
+	VPATH += keyboards/gboards
+endif

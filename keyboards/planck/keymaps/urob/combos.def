@@ -1,0 +1,48 @@
+// name     result    chord keys
+
+// combos involving both hands
+COMB(TN_CWRD,  CAPS_WORD, HOME_T, HOME_N)
+
+// left hand horizontal combos
+COMB(QW_MTAB,  LALT(KC_TAB), KC_Q, KC_W)
+
+COMB(AR_CTLA,  LCTL(KC_A),HOME_A, HOME_R)
+COMB(ST_BSLS,  KC_BSLS,   HOME_S, HOME_T)
+COMB(TG_EXCL,  KC_EXLM,   HOME_T, KC_G)
+ 
+COMB(ZX_CUT,   CUT,       KC_Z,   KC_X)
+COMB(XC_COPY,  COPY,      KC_X,   KC_C)
+COMB(CD_PASTE, PASTE,     KC_C,   KC_D)
+
+// right hand horizontal combos
+COMB(JL_EQM,   EQM,       KC_J,   KC_L)
+COMB(LU_LBRC,  KC_LBRC,   KC_L,   KC_U)
+COMB(UY_RBRC,  KC_RBRC,   KC_U,   KC_Y)
+
+COMB(MN_QUES,  KC_QUES,   KC_M,   HOME_N)
+COMB(NE_LPRN,  KC_LPRN,   HOME_N, HOME_E)
+COMB(EI_RPRN,  KC_RPRN,   HOME_E, HOME_I)
+
+COMB(KH_EQL,   KC_EQL,    KC_K, KC_H)
+COMB(HCOM_LCBR,  KC_LCBR,   KC_H,   KC_COMM)
+COMB(COMDOT_RCBR,  KC_RCBR,   KC_COMM,   KC_DOT)
+
+// left hand vertical combos
+COMB(WR_AT,    KC_AT,     KC_W,    HOME_R)
+COMB(FS_HASH,  KC_HASH,   KC_F,    HOME_S)
+COMB(PT_DLR,   KC_DLR,    KC_P,    HOME_T)
+COMB(BG_PERC,  KC_PERC,   KC_B,    KC_G)
+
+COMB(SC_GRV,   KC_GRV,    HOME_S,    KC_C)
+COMB(TD_TILD,  KC_TILD,   HOME_T,    KC_D)
+
+// right hand vertical combos
+COMB(JM_CIRC,  KC_CIRC,   KC_J,    KC_M)
+COMB(LN_PLUS,  KC_PLUS,   KC_L,    HOME_N)
+COMB(UE_ASTR,  KC_ASTR,   KC_U,    HOME_E)
+COMB(YI_AMPR,  KC_AMPR,   KC_Y,    HOME_I)
+
+COMB(MK_UNDS,  KC_UNDS,   KC_M,    KC_K)
+COMB(NH_MINS,  KC_MINS,   HOME_N,    KC_H)
+COMB(ECOMM_SLSH,   KC_SLSH,   HOME_E,    KC_COMM)
+COMB(IDOT_PIPE,  KC_PIPE,   HOME_I,    KC_DOT)

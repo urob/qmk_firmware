@@ -59,9 +59,6 @@ enum custom_keycodes {
 #define HOME_I LALT_T(KC_I)
 #define HOME_O RGUI_T(KC_O)
 
-#define HOME_TAU LSFT_T(MT_TAU)
-#define HOME_NU RSFT_T(MT_NU)
-
 // Greek letters and German umlauts
 enum unicode_names {
     /* Greek letters (capitalized) */
