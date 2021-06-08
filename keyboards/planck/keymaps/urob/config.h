@@ -27,11 +27,17 @@
 // Ignore same-hand mods.
 #define BILATERAL_COMBINATIONS 350
 
+// Auto Shift
+#define NO_AUTO_SHIFT_ALPHA
+#define NO_AUTO_SHIFT_NUMERIC
+#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
+#define AUTO_SHIFT_NO_SETUP
+
 // Recommended for heavy chording.
 #define QMK_KEYS_PER_SCAN 4
 
 // Combos
-#define COMBO_TERM 20
+#define COMBO_TERM 25
 #define COMBO_MUST_TAP_PER_COMBO
 // #define COMBO_STRICT_TIMER
 #define COMBO_VARIABLE_LEN

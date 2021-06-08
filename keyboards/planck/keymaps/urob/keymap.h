@@ -26,13 +26,13 @@ enum custom_keycodes {
 // Layer keys
 #define ESC_SYS  LT(_SYS, KC_ESC)
 #define SPC_NAV  LT(_NAV, KC_SPACE)
-#define TAB_SYM  LT(_SYM, KC_TAB)
-#define ENT_SFT  LSFT_T(KC_ENT)
+#define TAB_GRK  LT(_GRK, KC_TAB)
+#define ENT_GRK  LT(_GRK, KC_ENT)
 #define BS_NUM   LT(_NUM, KC_BSPACE)
 #define DEL_FN   LT(_FN, KC_DEL)
 
-#define CWD_GRK LT(_GRK, CAPS_WORD)
-#define COL_GRK LT(_GRK, KC_SCOLON)
+// #define OSL_GRK  LSFT_T(OSL(_GRK))
+#define OSL_GRK  OSL(_GRK)
 
 // Misc keys
 #define UNDO     LCTL(KC_Z)

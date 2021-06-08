@@ -63,14 +63,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,      DF(_NUM), XXXXXXX,  KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
     HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G,      XXXXXXX, XXXXXXX,   KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O, 
     KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,      XXXXXXX, XXXXXXX,   KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SCLN,
-    UNDO,    OSL(_GRK),ESC_SYS, SPC_NAV, TAB_SYM,  XXXXXXX, XXXXXXX,   ENT_SFT, BS_NUM,  DEL_FN,  KC_WH_D, KC_WH_U
+    UNDO,    OSL_GRK, ESC_SYS, SPC_NAV, TAB_GRK,   KC_LSFT, KC_RSFT,   ENT_GRK, BS_NUM,  DEL_FN,  KC_WH_D, KC_WH_U
 ),
 
 [_GRK] = LAYOUT_planck_grid(
     _______, OMEGA,   PHI,     PI,      BETA,      _______, _______,   EQM,     LAMBDA,  UPSILON, PSI,     ESZETT,
     ALPHA,   RHO,     SIGMA,   TAU,     GAMMA,     _______, _______,   MUG,     NU,      EPSILON, IOTA,    _______,
     ZETA,    XI,      CHI,     DELTA,   THETA,     _______, _______,   KAPPA,   ETA,     AE,      OE,      UE,
-    _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______
+    _______, _______, _______, _______, KC_LSFT,   _______, _______,   KC_RSFT, _______, _______, _______, _______
 ),
 
 [_NAV] = LAYOUT_planck_grid(
@@ -80,12 +80,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______,   _______, _______,   KC_ENT , KC_BSPC, KC_DEL , _______, _______
 ),
 
-[_SYM] = LAYOUT_planck_grid(
-    _______, _______, _______, _______, _______,   _______, _______,   KC_AT  , KC_LCBR, KC_RCBR, KC_PERC, KC_ASTR,
-    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,   _______, _______,   KC_DLR , KC_LPRN, KC_RPRN, KC_AMPR, KC_CIRC,
-    _______, _______, _______, _______, _______,   _______, _______,   KC_HASH, KC_LBRC, KC_RBRC, KC_EXLM, KC_QUES,
-    _______, _______, _______, _______, _______,   _______, _______,   KC_ENT , KC_BSPC, KC_DEL , _______, _______
-),
+// [_SYM] = LAYOUT_planck_grid( /* depreciated, replaced by combo layer */
+//     _______, _______, _______, _______, _______,   _______, _______,   KC_AT  , KC_LCBR, KC_RCBR, KC_PERC, KC_ASTR,
+//     KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,   _______, _______,   KC_DLR , KC_LPRN, KC_RPRN, KC_AMPR, KC_CIRC,
+//     _______, _______, _______, _______, _______,   _______, _______,   KC_HASH, KC_LBRC, KC_RBRC, KC_EXLM, KC_QUES,
+//     _______, _______, _______, _______, _______,   _______, _______,   KC_ENT , KC_BSPC, KC_DEL , _______, _______
+// ),
 
 [_SYS] = LAYOUT_planck_grid(
     ADJUST , _______, _______, _______, _______,   _______, _______,   _______, KC_MPRV, KC_VOLU, KC_MNXT, KC_SLEP,
@@ -231,12 +231,12 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         /* use lower tapping term for thumb mods */
-        case ENT_SFT:
+        case ENT_GRK:
         case BS_NUM:
         case ESC_SYS:
         case DEL_FN:
         case SPC_NAV:
-        case TAB_SYM:
+        case TAB_GRK:
             return TAPPING_TERM - 20;
         case HOME_A:
         case HOME_R:
