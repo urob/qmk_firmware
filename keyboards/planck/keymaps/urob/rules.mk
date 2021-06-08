@@ -1,7 +1,7 @@
 # SRC += muse.c
 UNICODEMAP_ENABLE = yes
 COMBO_ENABLE = yes
-AUTO_SHIFT_ENABLE = yes
+# AUTO_SHIFT_ENABLE = yes
 
 # Load the necessary external C files if and only if
 # the associated config option has been enabled
