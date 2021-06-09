@@ -1,7 +1,7 @@
 # Keymap configuration for OLKB Planck
 
 !(layout.png)
-
+![](layout.png)
 
 - base, num and nav layers are mapped to almost vanilla Miryoku (including home row mods)
 - all symbols and various desktop shortcuts can be reached from the base layer via combos
