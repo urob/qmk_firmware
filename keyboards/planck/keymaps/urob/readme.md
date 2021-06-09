@@ -1,7 +1,5 @@
 ## Keymap configuration for OLKB Planck
 
-![](layout.png)
-
 - modifiers on home row
 - layer switches on thumb keys
 - base, num and nav layers are mapped to almost vanilla Miryoku
@@ -9,6 +7,8 @@
 - the bottom left key is mapped to undo/redo which I can bump comfortably with my palm while having my hands on the home row
 - the bottom right two keys are mouse wheel up/down for hands-off-keyboard browsing and for advancing slides while giving presentations
 - the greek layer has shift keys mapped to their respective mods, so that holding down both mods simultaneously yields shifted versions 
+
+![](layout.png)
 
 ## Combos
 
