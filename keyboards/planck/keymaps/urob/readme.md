@@ -1,5 +1,8 @@
 # Keymap configuration for OLKB Planck
 
+!(layout.png)
+
+
 - base, num and nav layers are mapped to almost vanilla Miryoku (including home row mods)
 - all symbols and various desktop shortcuts can be reached from the base layer via combos
 - the middle two columns do mostly nothing (except for a num lock on row 1)
