@@ -1,6 +1,12 @@
 #pragma once
 
 #include QMK_KEYBOARD_H
+//
+// Initialize variable holding the binary
+// representation of active modifiers.
+uint8_t mod_state;
+uint8_t oneshot_mod_state;
+uint16_t last_keycode;
 
 bool caps_word_on;
 void caps_word_enable(void);
@@ -19,6 +25,7 @@ enum layer_names {
 
 enum custom_keycodes {
     CAPS_WORD = SAFE_RANGE,
+    REPEAT,
     MT_TAU, // dummy keycode
     MT_NU // dummy keycode
 };
@@ -30,6 +37,8 @@ enum custom_keycodes {
 #define ENT_GRK  LT(_GRK, KC_ENT)
 #define BS_NUM   LT(_NUM, KC_BSPACE)
 #define DEL_FN   LT(_FN, KC_DEL)
+#define REP_NUM  LT(_NUM, KC_NO) // repeat key must be basic key for tap-hold to work
+#define BS_FN    LT(_FN, KC_BSPACE)
 
 // #define OSL_GRK  LSFT_T(OSL(_GRK))
 #define OSL_GRK  OSL(_GRK)

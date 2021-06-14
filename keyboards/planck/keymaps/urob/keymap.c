@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,      DF(_NUM), XXXXXXX,  KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
     HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G,      XXXXXXX, XXXXXXX,   KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O, 
     KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,      XXXXXXX, XXXXXXX,   KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SCLN,
-    UNDO,    OSL_GRK, ESC_SYS, SPC_NAV, TAB_GRK,   KC_LSFT, KC_RSFT,   ENT_GRK, BS_NUM,  DEL_FN,  KC_WH_D, KC_WH_U
+    UNDO,    OSL_GRK, ESC_SYS, SPC_NAV, TAB_GRK,   KC_LSFT, KC_RSFT,   ENT_GRK, REP_NUM, BS_FN,   KC_WH_D, KC_WH_U
 ),
 
 [_GRK] = LAYOUT_planck_grid(
@@ -75,9 +75,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NAV] = LAYOUT_planck_grid(
     _______, _______, _______, _______, _______,   _______, _______,   KC_INS , KC_HOME, KC_UP,   KC_END,  KC_PGUP,
-    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,   _______, _______,   _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,
+    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,   _______, _______,   KC_DEL , KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,
     _______, _______, _______, _______, _______,   _______, _______,   _______, PASTE  , COPY   , CUT    , _______,
-    _______, _______, _______, _______, _______,   _______, _______,   KC_ENT , KC_BSPC, KC_DEL , _______, _______
+    _______, _______, _______, _______, _______,   _______, _______,   KC_ENT , XXXXXXX, KC_BSPC, _______, _______
 ),
 
 // [_SYM] = LAYOUT_planck_grid( /* depreciated, replaced by combo layer */
@@ -135,6 +135,12 @@ void caps_word_disable(void) {
     }
 }
 
+
+// Used to extract the basic tapping keycode from a dual-role key.
+// Example: GET_TAP_KC(MT(MOD_RSFT, KC_E)) == KC_E
+#define GET_TAP_KC(dual_role_key) dual_role_key & 0xFF
+
+
 void process_caps_word(uint16_t keycode, const keyrecord_t *record) {
     // Update caps word state
     if (caps_word_on) {
@@ -144,7 +150,8 @@ void process_caps_word(uint16_t keycode, const keyrecord_t *record) {
                 // Earlier return if this has not been considered tapped yet
                 if (record->tap.count == 0) { return; }
                 // Get the base tapping keycode of a mod- or layer-tap key
-                keycode = keycode & 0xFF;
+                // keycode = keycode & 0xFF;
+                keycode = GET_TAP_KC(keycode);
                 break;
             default:
                 break;
@@ -178,35 +185,124 @@ void process_caps_word(uint16_t keycode, const keyrecord_t *record) {
 }
 
 
+uint16_t last_keycode = KC_NO;
+uint8_t last_modifier = 0;
+void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
+    if ((keycode != REP_NUM) || (record->tap.count == 0)) { // hold does not trigger repeat
+        last_modifier = oneshot_mod_state > mod_state ? oneshot_mod_state : mod_state;
+        switch (keycode) {
+            case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+                if (record->event.pressed) {
+                    last_keycode = GET_TAP_KC(keycode);
+                }
+                break;
+            default:
+                if (record->event.pressed) {
+                    last_keycode = keycode;
+                }
+                break;
+        }
+    } else { // keycode == REPEAT and it is tapped (not hold)
+        if (record->event.pressed) {
+            register_mods(last_modifier);
+            register_code16(last_keycode);
+        } else {
+            unregister_code16(last_keycode);
+            unregister_mods(last_modifier);
+        }
+    }
+}
+
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Process caps word for updates
     process_caps_word(keycode, record);
 
+    process_repeat_key(keycode, record);
+    mod_state = get_mods();
+    oneshot_mod_state = get_oneshot_mods();
+
     switch (keycode) {
 
-    case CAPS_WORD:
-        // Toggle `caps_word_on`
-        if (record->event.pressed) {
-            if (caps_word_on) {
-                caps_word_disable();
-                return false;
-            } else {
-                caps_word_enable();
-                return false;
+        case CAPS_WORD:
+            // Toggle `caps_word_on`
+            if (record->event.pressed) {
+                if (caps_word_on) {
+                    caps_word_disable();
+                    return false;
+                } else {
+                    caps_word_enable();
+                    return false;
+                }
             }
-        }
-        break;
+            break;
+
+        case KC_BSPC:
+            {
+            static bool delkey_registered;
+            if (record->event.pressed) {
+                if (mod_state & MOD_MASK_SHIFT) {
+                    // In case only one shift is held
+                    // see https://stackoverflow.com/questions/1596668/logical-xor-operator-in-c
+                    // This also means that in case of holding both shifts and pressing KC_BSPC,
+                    // Shift+Delete is sent (useful in Firefox) since the shift modifiers aren't deleted.
+                    if (!(mod_state & MOD_BIT(KC_LSHIFT)) != !(mod_state & MOD_BIT(KC_RSHIFT))) {
+                        del_mods(MOD_MASK_SHIFT);
+                    }
+                    register_code(KC_DEL);
+                    delkey_registered = true;
+                    set_mods(mod_state);
+                    return false;
+                }
+            } else {
+                if (delkey_registered) {
+                    unregister_code(KC_DEL);
+                    delkey_registered = false;
+                    return false;
+                }
+            }
+            return true;
+            }
+
+        case BS_FN: // duplicate KC_BSPC code for BS_FN when tapped
+            if (record->tap.count > 0) { // do not apply on hold
+            static bool delkey_registered;
+            if (record->event.pressed) {
+                if (mod_state & MOD_MASK_SHIFT) {
+                    // In case only one shift is held
+                    // see https://stackoverflow.com/questions/1596668/logical-xor-operator-in-c
+                    // This also means that in case of holding both shifts and pressing KC_BSPC,
+                    // Shift+Delete is sent (useful in Firefox) since the shift modifiers aren't deleted.
+                    if (!(mod_state & MOD_BIT(KC_LSHIFT)) != !(mod_state & MOD_BIT(KC_RSHIFT))) {
+                        del_mods(MOD_MASK_SHIFT);
+                    }
+                    register_code(KC_DEL);
+                    delkey_registered = true;
+                    set_mods(mod_state);
+                    return false;
+                }
+            } else {
+                if (delkey_registered) {
+                    unregister_code(KC_DEL);
+                    delkey_registered = false;
+                    return false;
+                }
+            }
+            return true;
+            }
 
     }
     return true; // Process all other keycodes normally
 }
 
-
 // Per key auto-repeat settings
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case BS_NUM:
+        case REP_NUM:
         case DEL_FN:
+        case BS_FN:
             return false;  /* allow auto-repeat for backspace */
         default:
             return true;   /* disable per default */
