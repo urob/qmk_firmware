@@ -59,11 +59,11 @@ const uint32_t PROGMEM unicode_map[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-[BASE] = LAYOUT_planck_grid( /* shift keys on middle col are for experimentation only, use HOME_T and HOME_N for productive use */
+[BASE] = LAYOUT_planck_grid( /* shift keys on middle col are backups only, use HOME_T and HOME_N instead */
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,      DF(_NUM), XXXXXXX,  KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
     HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G,      XXXXXXX, XXXXXXX,   KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O, 
     KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,      XXXXXXX, XXXXXXX,   KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SCLN,
-    UNDO,    OSL_GRK, ESC_SYS, SPC_NAV, TAB_GRK,   KC_LSFT, KC_RSFT,   ENT_GRK, REP_NUM, BS_FN,   KC_WH_D, KC_WH_U
+    UNDO,    XXXXXXX, ESC_SYS, SPC_NAV, TAB_GRK,   KC_LSFT, KC_RSFT,   ENT_GRK, REP_NUM, BS_FN,   KC_WH_D, KC_WH_U
 ),
 
 [_GRK] = LAYOUT_planck_grid(
