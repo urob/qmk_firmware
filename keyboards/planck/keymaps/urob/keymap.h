@@ -37,11 +37,9 @@ enum custom_keycodes {
 #define ENT_GRK  LT(_GRK, KC_ENT)
 #define BS_NUM   LT(_NUM, KC_BSPACE)
 #define DEL_FN   LT(_FN, KC_DEL)
-#define REP_NUM  LT(_NUM, KC_NO) // repeat key must be basic key for tap-hold to work
+#define REP_NUM  LT(_NUM, KC_NO) // tap-hold required basic key
 #define BS_FN    LT(_FN, KC_BSPACE)
 
-// #define OSL_GRK  LSFT_T(OSL(_GRK))
-#define OSL_GRK  OSL(_GRK)
 
 // Misc keys
 #define UNDO     LCTL(KC_Z)
@@ -51,10 +49,13 @@ enum custom_keycodes {
 #define PASTE    LCTL(KC_V)
 #define DSK_LT   LGUI(LCTL(KC_LEFT))  // prev desktop in Windows 10
 #define DSK_RT   LGUI(LCTL(KC_RIGHT)) // next desktop in Windows 10
-#define WIN_LT   LALT(LCTL(LSFT(KC_TAB)))  // prev window in Windows 10
-#define WIN_RT   LALT(LCTL(KC_TAB))  // prev window in Windows 10
 #define ADJUST   MO(_ADJUST)
 #define EQM      LALT(KC_EQL)
+
+#define FZ_L1    LALT(LCTL(LGUI(KC_1)))  // fancy zones layout 1
+#define FZ_L2    LALT(LCTL(LGUI(KC_2)))  // fancy zones layout 2
+#define FZ_L3    LALT(LCTL(LGUI(KC_3)))  // fancy zones layout 3
+#define FZ_LE    LGUI(KC_TILD)           // fancy zones layout editor
 
 // Left-hand home row mods
 #define HOME_A LGUI_T(KC_A)
