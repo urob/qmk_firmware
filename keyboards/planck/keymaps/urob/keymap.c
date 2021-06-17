@@ -367,6 +367,6 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
 // customize bilateral combinations, needs 605ecc6c3b4141a930544ca4a35488d1497df967
 bool get_bilateral_combinations(keypos_t *hold, keypos_t *tap) {
   bool same     = (hold->row < MATRIX_ROWS / 2) == (tap->row < MATRIX_ROWS / 2);
-  bool top_rows = same && (tap->col < 3); // bottom row does not activate bilateral combinations
+  bool top_rows = same && (tap->row != 3) && (tap->row != 7); // bottom row does not activate bilateral combinations
   return top_rows;
 }
