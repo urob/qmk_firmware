@@ -30,4 +30,4 @@ The configuration requires the following commits merged into the local QMK
 branch (or simply forking this branch)
 
 - Bilateral combinations ([link](https://github.com/manna-harbour/qmk_firmware/issues/29)) + custom mod ([605ecc6](https://github.com/manna-harbour/qmk_firmware/commit/605ecc6c3b4141a930544ca4a35488d1497df967))
-- Early combinations ([PR 8591](https://github.com/qmk/qmk_firmware/pull/8591))
+- Early combos ([PR 8591](https://github.com/qmk/qmk_firmware/pull/8591))
