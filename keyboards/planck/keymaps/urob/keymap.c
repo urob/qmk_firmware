@@ -312,11 +312,11 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 // Per key permissive hold settings
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-//        case HOME_A:
-//        case HOME_R:
-//        case HOME_I:
-//        case HOME_O:
-//            return false;  /* disable permissive hold for Alt and Gui */
+        case HOME_A:
+        case HOME_R:
+        case HOME_I:
+        case HOME_O:
+            return false;  /* disable permissive hold for Alt and Gui */
         default:
             return true;   /* enable per default */
     }
