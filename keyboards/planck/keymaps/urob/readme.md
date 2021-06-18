@@ -8,7 +8,7 @@
 - unicode layer with Greek symbols for mathematical typesetting (shifted
   versions when both layer mods are held together)
 - symbols and desktop shortcuts are accessed from the base layer via combos
-- the middle two columns do nothing (except for a num lock on row 1)
+- ergo mod aka the middle two columns do nothing (except for a num lock on row 1)
 - the bottom left key is mapped to undo/redo (activated with my palm when hands are on the home row)
 - the bottom right two keys are mouse wheel up/down for hands-off-keyboard browsing and for advancing slides in presentations
 
@@ -29,5 +29,5 @@
 The configuration requires the following commits merged into the local QMK
 branch (or simply forking this branch)
 
-- Bilateral combinations
-- Early combination
+- Bilateral combinations (https://github.com/manna-harbour/qmk_firmware/issues/29) + custom mod 605ecc6c3b4141a930544ca4a35488d1497df967
+- Early combination (https://github.com/qmk/qmk_firmware/pull/8591)
