@@ -215,13 +215,25 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
 }
 
 
+// the time of the last input, used to tweak the timing of combos depending on if I'm currently
+// in active typing flow (should practically remove any chance of mistriggering combos)
+static uint16_t non_combo_input_timer = 0;
+uint16_t get_combo_term(uint16_t index, combo_t *combo) {
+    return timer_elapsed(non_combo_input_timer) > 300 ? 50 : 5;
+}
+
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Process caps word for updates
     process_caps_word(keycode, record);
 
+    // Process repeat key
     process_repeat_key(keycode, record);
     mod_state = get_mods();
     oneshot_mod_state = get_oneshot_mods();
+
+    // Input timer to adjust combo term
+    non_combo_input_timer = timer_read();
 
     switch (keycode) {
 

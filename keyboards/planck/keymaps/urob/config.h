@@ -12,7 +12,7 @@
 
 // Configure the default tapping term.
 #undef TAPPING_TERM
-#define TAPPING_TERM 180
+#define TAPPING_TERM 190
 #define TAPPING_TERM_PER_KEY // See bottom of keymap.c
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
@@ -25,15 +25,15 @@
 #define PERMISSIVE_HOLD_PER_KEY
 
 // Ignore same-hand mods.
-#define BILATERAL_COMBINATIONS 300
+#define BILATERAL_COMBINATIONS 320
 
 // Recommended for heavy chording.
 #define QMK_KEYS_PER_SCAN 4
 
 // Combos
 #define COMBO_TERM 25
+#define COMBO_TERM_PER_COMBO
 #define COMBO_MUST_TAP_PER_COMBO
-// #define COMBO_STRICT_TIMER
 #define COMBO_VARIABLE_LEN
 
 // Configure unicode for use with WinCompose. 
