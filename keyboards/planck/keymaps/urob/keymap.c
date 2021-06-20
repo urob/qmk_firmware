@@ -338,7 +338,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case HOME_R:
         case HOME_I:
         case HOME_O:
-            return TAPPING_TERM + 65; // workaround bilateral combination limitations
+            return TAPPING_TERM + 45; // workaround bilateral combination limitations
         default:
             return TAPPING_TERM;
     }

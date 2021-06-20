@@ -25,13 +25,7 @@
 #define PERMISSIVE_HOLD_PER_KEY
 
 // Ignore same-hand mods.
-#define BILATERAL_COMBINATIONS 350
-
-// Auto Shift
-// #define NO_AUTO_SHIFT_ALPHA
-// #define NO_AUTO_SHIFT_NUMERIC
-// #define AUTO_SHIFT_TIMEOUT TAPPING_TERM
-// #define AUTO_SHIFT_NO_SETUP
+#define BILATERAL_COMBINATIONS 300
 
 // Recommended for heavy chording.
 #define QMK_KEYS_PER_SCAN 4
