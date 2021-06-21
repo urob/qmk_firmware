@@ -31,7 +31,7 @@
 #define QMK_KEYS_PER_SCAN 4
 
 // Combos
-#define COMBO_TERM 25
+#define COMBO_TERM 35
 #define COMBO_TERM_PER_COMBO
 #define COMBO_MUST_TAP_PER_COMBO
 #define COMBO_VARIABLE_LEN

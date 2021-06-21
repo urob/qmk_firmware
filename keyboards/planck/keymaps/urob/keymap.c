@@ -219,7 +219,7 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
 // in active typing flow (should practically remove any chance of mistriggering combos)
 static uint16_t non_combo_input_timer = 0;
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
-    return timer_elapsed(non_combo_input_timer) > 300 ? 50 : 5;
+    return timer_elapsed(non_combo_input_timer) > 300 ? COMBO_TERM : 5;
 }
 
 
