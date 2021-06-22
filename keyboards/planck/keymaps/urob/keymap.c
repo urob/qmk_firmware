@@ -251,34 +251,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
 
         case KC_BSPC:
-            {
-            static bool delkey_registered;
-            if (record->event.pressed) {
-                if (mod_state & MOD_MASK_SHIFT) {
-                    // In case only one shift is held
-                    // see https://stackoverflow.com/questions/1596668/logical-xor-operator-in-c
-                    // This also means that in case of holding both shifts and pressing KC_BSPC,
-                    // Shift+Delete is sent (useful in Firefox) since the shift modifiers aren't deleted.
-                    if (!(mod_state & MOD_BIT(KC_LSHIFT)) != !(mod_state & MOD_BIT(KC_RSHIFT))) {
-                        del_mods(MOD_MASK_SHIFT);
-                    }
-                    register_code(KC_DEL);
-                    delkey_registered = true;
-                    set_mods(mod_state);
-                    return false;
-                }
-            } else {
-                if (delkey_registered) {
-                    unregister_code(KC_DEL);
-                    delkey_registered = false;
-                    return false;
-                }
-            }
-            return true;
-            }
-
-        case BS_FN: // duplicate KC_BSPC code for BS_FN when tapped
-            if (record->tap.count > 0) { // do not apply on hold
+        case BS_FN:
+            if ((record->tap.count > 0) || (keycode != BS_FN)) { // do not morph BS_FN when hold
             static bool delkey_registered;
             if (record->event.pressed) {
                 if (mod_state & MOD_MASK_SHIFT) {
@@ -345,7 +319,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case HOME_R:
         case HOME_I:
         case HOME_O:
-            return TAPPING_TERM + 70; // raise tapping term for Alt and Gui to prevent flashing mods until bilateral combinations is fixed
+            return TAPPING_TERM + 70; // raise tapping term for Alt and Gui to prevent
+                                      // flashing mods until bilateral combinations is fixed
         default:
             return TAPPING_TERM;
     }
@@ -355,7 +330,8 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
     // If you want all combos to be tap-only, just uncomment the next line
     // return true;
 
-    // If you want *all* combos, that have Mod-Tap/Layer-Tap/Momentary keys in its chord, to be tap-only, this is for you:
+    // If you want *all* combos, that have Mod-Tap/Layer-Tap/Momentary keys in its chord, 
+    // to be tap-only, this is for you:
     uint16_t key;
     uint8_t idx = 0;
     while ((key = pgm_read_word(&combo->keys[idx])) != COMBO_END) {
@@ -371,9 +347,10 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
 
 }
 
-// customize bilateral combinations, needs 605ecc6c3b4141a930544ca4a35488d1497df967
+// bilateral combinations does not play well with nonstandard key matrices
+// deactivate it for thumb keys as a workaround
 bool get_bilateral_combinations(keypos_t *hold, keypos_t *tap) {
   bool same     = (hold->row < MATRIX_ROWS / 2) == (tap->row < MATRIX_ROWS / 2);
-  bool top_rows = same && (tap->row != 3) && (tap->row != 7); // bottom row does not activate bilateral combinations
+  bool top_rows = same && (tap->row != 3) && (tap->row != 7); // deactivate BL for thumb keys
   return top_rows;
 }
