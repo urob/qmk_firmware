@@ -203,13 +203,28 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
                 }
                 break;
         }
-    } else { // keycode == REPEAT and it is tapped (not hold)
-        if (record->event.pressed) {
-            register_mods(last_modifier);
-            register_code16(last_keycode);
-        } else {
-            unregister_code16(last_keycode);
-            unregister_mods(last_modifier);
+    } else { // keycode == REPEAT and it isn't held
+        // first check whether last key was shifted using one of the HRM shifts 
+        if ((last_modifier & MOD_BIT(KC_LSFT)) == MOD_BIT(KC_LSFT)) {
+            if (record->event.pressed) {
+               register_code(KC_T);
+            } else {
+               unregister_code(KC_T);
+            }
+        } else if ((last_modifier & MOD_BIT(KC_RSFT)) == MOD_BIT(KC_RSFT)) {
+            if (record->event.pressed) {
+               register_code(KC_N);
+            } else {
+               unregister_code(KC_N);
+            }
+        } else { // process repeat key as usual
+            if (record->event.pressed) {
+                register_mods(last_modifier);
+                register_code16(last_keycode);
+            } else {
+                unregister_code16(last_keycode);
+                unregister_mods(last_modifier);
+            }
         }
     }
 }
