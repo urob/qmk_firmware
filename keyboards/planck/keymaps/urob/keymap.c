@@ -338,19 +338,14 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 // Per key tapping term settings
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        /* use lower tapping term for thumb mods */
-        case ENT_GRK:
-        case BS_NUM:
-        case ESC_SYS:
-        case DEL_FN:
-        case SPC_NAV:
-        case TAB_GRK:
-            return TAPPING_TERM - 20;
+        case HOME_T:
+        case HOME_N:
+            return TAPPING_TERM - 20; // lower tapping term for shift
         case HOME_A:
         case HOME_R:
         case HOME_I:
         case HOME_O:
-            return TAPPING_TERM + 45; // workaround bilateral combination limitations
+            return TAPPING_TERM + 70; // raise tapping term for Alt and Gui to prevent flashing mods until bilateral combinations is fixed
         default:
             return TAPPING_TERM;
     }
