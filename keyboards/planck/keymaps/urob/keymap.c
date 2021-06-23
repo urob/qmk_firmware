@@ -204,14 +204,14 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
                 break;
         }
     } else { // keycode == REPEAT and it isn't held
-        // first check whether last key was shifted using one of the HRM shifts 
-        if ((last_modifier & MOD_BIT(KC_LSFT)) == MOD_BIT(KC_LSFT)) {
+        // first check whether last key is a shifted alpha, if so repeat the HRM alpha used to trigger the shift
+        if ((last_modifier == MOD_BIT(KC_LSFT)) && (last_keycode >= KC_A) && (last_keycode <= KC_Z)) {
             if (record->event.pressed) {
                register_code(KC_T);
             } else {
                unregister_code(KC_T);
             }
-        } else if ((last_modifier & MOD_BIT(KC_RSFT)) == MOD_BIT(KC_RSFT)) {
+        } else if ((last_modifier == MOD_BIT(KC_RSFT)) && (last_keycode >= KC_A) && (last_keycode <= KC_Z)) {
             if (record->event.pressed) {
                register_code(KC_N);
             } else {
@@ -329,7 +329,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case HOME_T:
         case HOME_N:
-            return TAPPING_TERM - 20; // lower tapping term for shift
+            return TAPPING_TERM - 10; // lower tapping term for shift
         case HOME_A:
         case HOME_R:
         case HOME_I:
