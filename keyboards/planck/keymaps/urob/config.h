@@ -1,42 +1,36 @@
 #pragma once
 
-#ifdef AUDIO_ENABLE
-    #define STARTUP_SONG SONG(PLANCK_SOUND)
-    // #define STARTUP_SONG SONG(NO_SOUND)
+/* Home row mods settings */
 
-#endif
-
-#define MIDI_BASIC
-
-// Home row mods settings //
-
-// Configure the default tapping term.
+// Default tapping term.
 #undef TAPPING_TERM
 #define TAPPING_TERM 190
 #define TAPPING_TERM_PER_KEY // See bottom of keymap.c
 
-// Prevent normal rollover on alphas from accidentally triggering mods.
+// Prevent rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
 
-// Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
+// Enable rapid switch from tap to hold, disables auto-repeat on double tap.
 #define TAPPING_FORCE_HOLD_PER_KEY
 
-// Apply the modifier on keys that are tapped during a short hold of a modtap
+// Apply the modifier on keys that are tapped during a short hold of a modtap.
 #define PERMISSIVE_HOLD_PER_KEY
 
 // Ignore same-hand mods.
 #define BILATERAL_COMBINATIONS 320
 
-// Recommended for heavy chording.
-#define QMK_KEYS_PER_SCAN 4
+/* Misc settings */
 
-// Combos
+// Combo settings
 #define COMBO_TERM 35
 #define COMBO_TERM_PER_COMBO
 #define COMBO_MUST_TAP_PER_COMBO
 #define COMBO_VARIABLE_LEN
 
-// Configure unicode for use with WinCompose. 
+// Recommended for heavy chording.
+#define QMK_KEYS_PER_SCAN 4
+
+// Configure unicode for use with WinCompose.
 #define UNICODE_SELECTED_MODES UC_WINC
 #define UNICODE_KEY_WINC KC_RALT
 
