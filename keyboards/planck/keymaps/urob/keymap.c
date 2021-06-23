@@ -188,7 +188,7 @@ void process_caps_word(uint16_t keycode, const keyrecord_t *record) {
 uint16_t last_keycode = KC_NO;
 uint8_t last_modifier = 0;
 void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
-    if ((keycode != REP_NUM) || (record->tap.count == 0)) { // hold does not trigger repeat
+    if ((keycode != REP_NUM) || (record->tap.count == 0)) { // REP_NUM is a LT, so hold should not trigger repeat
         last_modifier = oneshot_mod_state > mod_state ? oneshot_mod_state : mod_state;
         switch (keycode) {
             case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
@@ -203,7 +203,7 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
                 }
                 break;
         }
-    } else { // keycode == REPEAT and it isn't held
+    } else { /* repeat action defined here */
         // first check whether last key is a shifted alpha, if so repeat the HRM alpha used to trigger the shift
         if ((last_modifier == MOD_BIT(KC_LSFT)) && (last_keycode >= KC_A) && (last_keycode <= KC_Z)) {
             if (record->event.pressed) {
