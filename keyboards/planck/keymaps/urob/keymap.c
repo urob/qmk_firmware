@@ -60,10 +60,17 @@ const uint32_t PROGMEM unicode_map[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [BASE] = LAYOUT_planck_grid( /* shift keys on middle col are backups only, use HOME_T and HOME_N instead */
-    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,      DF(_NUM), XXXXXXX,  KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
+    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,      TG(_NUM), DF(_NOM), KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
     HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G,      XXXXXXX, XXXXXXX,   KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O, 
     KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,      XXXXXXX, XXXXXXX,   KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SCLN,
     UNDO,    XXXXXXX, ESC_SYS, SPC_NAV, TAB_GRK,   KC_LSFT, KC_RSFT,   ENT_GRK, REP_NUM, BS_FN,   KC_WH_D, KC_WH_U
+),
+
+[_NOM] = LAYOUT_planck_grid( /* deactivate home non-shift row mods */
+    _______, _______, _______, _______, _______,   _______, DF(BASE),  _______, _______, _______, _______, _______,
+    KC_A   , KC_R   , KC_S   , _______, _______,   _______, _______,   _______, _______, KC_E   , KC_I   , KC_O   ,
+    _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______
 ),
 
 [_GRK] = LAYOUT_planck_grid(
@@ -95,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_NUM] = LAYOUT_planck_grid(
-    KC_ESC,  KC_9,    KC_8,    KC_7,    KC_ASTR,   DF(0),   _______,   _______, _______, _______, _______, _______,
+    KC_ESC,  KC_9,    KC_8,    KC_7,    KC_ASTR,   _______, _______,   _______, _______, _______, _______, _______,
     KC_ENT,  KC_3,    KC_2,    KC_1,    KC_PLUS,   _______, _______,   _______, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI,
     KC_TAB,  KC_6,    KC_5,    KC_4,    KC_SLSH,   _______, _______,   _______, _______, _______, _______, _______,
     _______, _______, KC_DOT,  KC_0,    KC_MINS,   _______, _______,   _______, _______, _______, _______, _______
@@ -107,7 +114,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_F10 , KC_F6  , KC_F5  , KC_F4  , _______,   _______, _______,   _______, _______, _______, _______, _______,
     _______, _______, KC_ESC , KC_SPC , KC_TAB ,   _______, _______,   _______, _______, _______, _______, _______
 ),
-
 
 [_ADJUST] = LAYOUT_planck_grid(
     _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI,   RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______,
