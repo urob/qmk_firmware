@@ -333,8 +333,10 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 // Per key tapping term settings
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case HOME_S:
         case HOME_T:
         case HOME_N:
+        case HOME_E:
             return TAPPING_TERM - 10; // lower tapping term for shift
         case HOME_A:
         case HOME_R:
