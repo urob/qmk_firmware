@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     UNDO,    XXXXXXX, ESC_SYS, SPC_NAV, TAB_GRK,   KC_LSFT, KC_RSFT,   ENT_GRK, REP_NUM, BS_FN,   KC_WH_D, KC_WH_U
 ),
 
-[_NOM] = LAYOUT_planck_grid( /* deactivate home non-shift row mods */
+[_NOM] = LAYOUT_planck_grid( /* deactivate home row non-shift mods */
     _______, _______, _______, _______, _______,   _______, DF(BASE),  _______, _______, _______, _______, _______,
     KC_A   , KC_R   , KC_S   , _______, _______,   _______, _______,   _______, _______, KC_E   , KC_I   , KC_O   ,
     _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______,
