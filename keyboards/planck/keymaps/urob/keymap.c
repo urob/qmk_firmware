@@ -15,14 +15,14 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [BASE] = LAYOUT_planck_grid( /* shift keys on middle col are backups only, use HOME_T and HOME_N instead */
-    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,      TG(_NUM), DF(_NOM), KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
-    HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G,      XXXXXXX, XXXXXXX,   KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O, 
+    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,      TG(_NUM),_______,   KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
+    HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G,      DF(BASE),DF(_NOM),  KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O, 
     KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,      XXXXXXX, XXXXXXX,   KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SCLN,
     UNDO,    XXXXXXX, ESC_SYS, SPC_NAV, TAB_GRK,   KC_LSFT, KC_RSFT,   ENT_GRK, REP_NUM, BS_FN,   KC_WH_D, KC_WH_U
 ),
 
 [_NOM] = LAYOUT_planck_grid( /* deactivate home row non-shift mods */
-    _______, _______, _______, _______, _______,   _______, DF(BASE),  _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______,
     KC_A   , KC_R   , KC_S   , KC_T   , _______,   _______, _______,   _______, KC_N   , KC_E   , KC_I   , KC_O   ,
     _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______,   _______, _______,   _______, SFT_NUM, _______, _______, _______
@@ -286,10 +286,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case SFT_NUM:
             if (record->tap.count > 0) {
-              update_oneshot(
-                  &os_shft_state, KC_LSFT, OS_SHFT,
-                  OS_SHFT, record
-              );
+              // update_oneshot(
+              //     &os_shft_state, KC_LSFT, OS_SHFT,
+              //     OS_SHFT, record
+              // );
+              add_oneshot_mods(MOD_BIT(KC_LSFT)); // prevent more than first alpha getting capitalized on rolls
               return false;
             } else {
               return true;
