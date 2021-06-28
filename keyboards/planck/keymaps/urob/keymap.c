@@ -2,59 +2,14 @@
 
 // All custom keycodes and aliases can be found in keymap.h
 #include "keymap.h"
+#include "unicode.c"
+#include "oneshot.h"
 
 // To make combo dictionary work (see combos.def for definitinos)
 #if defined(COMBO_ENABLE)
 #    include "g/keymap_combo.h"
 #endif
 
-// Unicode definitions (see keymap.h for key definitions)
-const uint32_t PROGMEM unicode_map[] = {
-    /* Greek letters (capitalized) */
-    [U_C_GAMM] = 0x0393,
-    [U_C_DELT] = 0x0394,
-    [U_C_THET] = 0x0398,
-    [U_C_LAMB] = 0x039B,
-    [U_C_XI]   = 0x039E,
-    [U_C_PI]   = 0x03A0,
-    [U_C_SIGM] = 0x03A3,
-    [U_C_UPSI] = 0x03A5,
-    [U_C_PHI]  = 0x03A6,
-    [U_C_PSI]  = 0x03A8,
-    [U_C_OMEG] = 0x03A9,
-    /* Greek letters */
-    [U_ALPH] = 0x03B1,
-    [U_BETA] = 0x03B2,  
-    [U_GAMM] = 0x03B3, 
-    [U_DELT] = 0x03B4, 
-    [U_EPSI] = 0x03F5, // varepsilon = 03B5 
-    [U_ZETA] = 0x03B6, 
-    [U_ETA]  = 0x03B7, 
-    [U_THET] = 0x03B8, 
-    [U_IOTA] = 0x03B9, 
-    [U_KAPP] = 0x03BA, 
-    [U_LAMB] = 0x03BB, 
-    [U_MU]   = 0x03BC, 
-    [U_NU]   = 0x03BD, 
-    [U_XI]   = 0x03BE, 
-    [U_PI]   = 0x03C0, 
-    [U_RHO]  = 0x03C1, 
-    [U_SIGM] = 0x03C3, 
-    [U_TAU]  = 0x03C4, 
-    [U_UPSI] = 0x03C5, 
-    [U_PHI]  = 0x03D5, // varphi = 03C6 
-    [U_CHI]  = 0x03C7, 
-    [U_PSI]  = 0x03C8, 
-    [U_OMEG] = 0x03C9,
-    /* German umlauts */
-    [U_AE] = 0x00E4,
-    [U_OE] = 0x00F6,
-    [U_UE] = 0x00FC,
-    [U_C_AE] = 0x00C4,
-    [U_C_OE] = 0x00D6,
-    [U_C_UE] = 0x00DC,
-    [U_SS] = 0x00DF,
-};
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -68,9 +23,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NOM] = LAYOUT_planck_grid( /* deactivate home row non-shift mods */
     _______, _______, _______, _______, _______,   _______, DF(BASE),  _______, _______, _______, _______, _______,
-    KC_A   , KC_R   , KC_S   , _______, _______,   _______, _______,   _______, _______, KC_E   , KC_I   , KC_O   ,
+    KC_A   , KC_R   , KC_S   , KC_T   , _______,   _______, _______,   _______, KC_N   , KC_E   , KC_I   , KC_O   ,
     _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______
+    _______, _______, _______, _______, _______,   _______, _______,   _______, SFT_NUM, _______, _______, _______
 ),
 
 [_GRK] = LAYOUT_planck_grid(
@@ -82,7 +37,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NAV] = LAYOUT_planck_grid(
     _______, _______, _______, _______, _______,   _______, _______,   KC_INS , KC_HOME, KC_UP,   KC_END,  KC_PGUP,
-    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,   _______, _______,   KC_DEL , KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,
+//    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,   _______, _______,   KC_DEL , KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,
+    OS_GUI , OS_ALT , OS_CTRL, OS_SHFT , _______,   _______, _______,   KC_DEL , KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,
     _______, _______, _______, _______, _______,   _______, _______,   _______, PASTE  , COPY   , CUT    , _______,
     _______, _______, _______, _______, _______,   _______, _______,   KC_ENT , XXXXXXX, KC_BSPC, _______, _______
 ),
@@ -96,21 +52,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_SYS] = LAYOUT_planck_grid(
     ADJUST , _______, _______, _______, _______,   _______, _______,   _______, KC_MPRV, KC_VOLU, KC_MNXT, KC_SLEP,
-    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,   _______, _______,   _______, DSK_LT,  KC_VOLD, DSK_RT,  _______,
+//    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,   _______, _______,   _______, DSK_LT,  KC_VOLD, DSK_RT,  _______,
+    OS_GUI , OS_ALT , OS_CTRL, OS_SHFT, _______,   _______, _______,   _______, DSK_LT,  KC_VOLD, DSK_RT,  _______,
     _______, _______, _______, _______, _______,   _______, _______,   _______, FZ_L1 ,  FZ_L2  , FZ_L3 ,  FZ_LE  ,
     _______, _______, _______, _______, _______,   _______, _______,   KC_MUTE, KC_MPLY, _______, _______, _______
 ),
 
 [_NUM] = LAYOUT_planck_grid(
     KC_ESC,  KC_9,    KC_8,    KC_7,    KC_ASTR,   _______, _______,   _______, _______, _______, _______, _______,
-    KC_ENT,  KC_3,    KC_2,    KC_1,    KC_PLUS,   _______, _______,   _______, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI,
+    // KC_ENT,  KC_3,    KC_2,    KC_1,    KC_PLUS,   _______, _______,   _______, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI,
+    KC_ENT,  KC_3,    KC_2,    KC_1,    KC_PLUS,   _______, _______,   _______, OS_SHFT, OS_CTRL, OS_ALT , OS_GUI,
     KC_TAB,  KC_6,    KC_5,    KC_4,    KC_SLSH,   _______, _______,   _______, _______, _______, _______, _______,
     _______, _______, KC_DOT,  KC_0,    KC_MINS,   _______, _______,   _______, _______, _______, _______, _______
 ),
 
 [_FN] = LAYOUT_planck_grid(
     KC_F12 , KC_F9  , KC_F8  , KC_F7  , _______,   _______, _______,   _______, _______, _______, _______, _______,
-    KC_F11 , KC_F3  , KC_F2  , KC_F1  , _______,   _______, _______,   _______, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI,
+ //   KC_F11 , KC_F3  , KC_F2  , KC_F1  , _______,   _______, _______,   _______, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI,
+    KC_F11 , KC_F3  , KC_F2  , KC_F1  , _______,   _______, _______,   _______, OS_SHFT, OS_CTRL, OS_ALT , OS_GUI,
     KC_F10 , KC_F6  , KC_F5  , KC_F4  , _______,   _______, _______,   _______, _______, _______, _______, _______,
     _______, _______, KC_ESC , KC_SPC , KC_TAB ,   _______, _______,   _______, _______, _______, _______, _______
 ),
@@ -244,6 +203,41 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 }
 
 
+
+bool is_oneshot_cancel_key(uint16_t keycode) {
+    switch (keycode) {
+    case SPC_NAV:
+    case SFT_NUM:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool is_oneshot_ignored_key(uint16_t keycode) {
+    switch (keycode) {
+    case SPC_NAV:
+    case SFT_NUM:
+    case KC_LSFT:
+    case OS_SHFT:
+    case OS_CTRL:
+    case OS_ALT:
+    case OS_GUI:
+        return true;
+    default:
+        return false;
+    }
+}
+
+
+
+
+oneshot_state os_shft_state = os_up_unqueued;
+oneshot_state os_ctrl_state = os_up_unqueued;
+oneshot_state os_alt_state = os_up_unqueued;
+oneshot_state os_gui_state = os_up_unqueued;
+
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Process caps word for updates
     process_caps_word(keycode, record);
@@ -255,6 +249,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     // Input timer to adjust combo term
     non_combo_input_timer = timer_read();
+
+    // callum mods
+    update_oneshot(
+        &os_shft_state, KC_LSFT, OS_SHFT,
+        keycode, record
+    );
+    update_oneshot(
+        &os_ctrl_state, KC_LCTL, OS_CTRL,
+        keycode, record
+    );
+    update_oneshot(
+        &os_alt_state, KC_LALT, OS_ALT,
+        keycode, record
+    );
+    update_oneshot(
+        &os_gui_state, KC_LGUI, OS_GUI,
+        keycode, record
+    );
+
 
     switch (keycode) {
 
@@ -270,6 +283,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             break;
+
+        case SFT_NUM:
+            if (record->tap.count > 0) {
+              update_oneshot(
+                  &os_shft_state, KC_LSFT, OS_SHFT,
+                  OS_SHFT, record
+              );
+              return false;
+            } else {
+              return true;
+            }
 
         case KC_BSPC:
         case BS_FN:

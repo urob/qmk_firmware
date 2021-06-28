@@ -23,3 +23,6 @@ BACKLIGHT_ENABLE = no
 ifeq ($(strip $(COMBO_ENABLE)), yes)
 	VPATH += keyboards/gboards
 endif
+
+# SRC += unicode.c
+SRC += oneshot.c

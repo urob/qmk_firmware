@@ -26,8 +26,11 @@ enum layer_names {
 enum custom_keycodes {
     CAPS_WORD = SAFE_RANGE,
     REPEAT,
-    MT_TAU, // dummy keycode
-    MT_NU // dummy keycode
+    
+    OS_SHFT,
+    OS_CTRL,
+    OS_ALT,
+    OS_GUI,
 };
 
 // Layer keys
@@ -38,6 +41,7 @@ enum custom_keycodes {
 #define BS_NUM   LT(_NUM, KC_BSPACE)
 #define DEL_FN   LT(_FN, KC_DEL)
 #define REP_NUM  LT(_NUM, KC_NO) // tap-hold required basic key
+#define SFT_NUM  LT(_NUM, KC_F22) // tap-hold required basic key
 #define BS_FN    LT(_FN, KC_BSPACE)
 
 
@@ -69,76 +73,3 @@ enum custom_keycodes {
 #define HOME_I LALT_T(KC_I)
 #define HOME_O RGUI_T(KC_O)
 
-// Greek letters and German umlauts
-enum unicode_names {
-    /* Greek letters (capitalized) */
-    U_C_GAMM,
-    U_C_DELT,
-    U_C_THET,
-    U_C_LAMB,
-    U_C_XI,
-    U_C_PI,
-    U_C_SIGM,
-    U_C_UPSI,
-    U_C_PHI,
-    U_C_PSI,
-    U_C_OMEG,
-    /* Greek letters */
-    U_ALPH,
-    U_BETA,
-    U_GAMM,
-    U_DELT,
-    U_EPSI,
-    U_ZETA,
-    U_ETA,
-    U_THET,
-    U_IOTA,
-    U_KAPP,
-    U_LAMB,
-    U_MU,
-    U_NU,
-    U_XI,
-    U_PI,
-    U_RHO,
-    U_SIGM,
-    U_TAU,
-    U_UPSI,
-    U_PHI,
-    U_CHI,
-    U_PSI,
-    U_OMEG,
-    /* German umlauts */
-    U_AE, U_C_AE,
-    U_OE, U_C_OE,
-    U_UE, U_C_UE,
-    U_SS,
-};
-
-#define ALPHA X(U_ALPH)
-#define BETA X(U_BETA)
-#define GAMMA XP(U_GAMM, U_C_GAMM)
-#define DELTA XP(U_DELT, U_C_DELT)
-#define EPSILON X(U_EPSI)
-#define ZETA X(U_ZETA)
-#define ETA X(U_ETA)
-#define THETA XP(U_THET, U_C_THET)
-#define IOTA X(U_IOTA)
-#define KAPPA X(U_KAPP)
-#define LAMBDA XP(U_LAMB, U_C_LAMB)
-#define MUG X(U_MU) // MU conflicts with core variable
-#define NU X(U_NU)
-#define XI XP(U_XI, U_C_XI)
-#define PI XP(U_PI, U_C_PI)
-#define RHO X(U_RHO)
-#define SIGMA XP(U_SIGM, U_C_SIGM)
-#define TAU X(U_TAU)
-#define UPSILON XP(U_UPSI, U_C_UPSI)
-#define PHI XP(U_PHI, U_C_PHI)
-#define CHI X(U_CHI)
-#define PSI XP(U_PSI, U_C_PSI)
-#define OMEGA XP(U_OMEG, U_C_OMEG)
-
-#define AE XP(U_AE, U_C_AE)
-#define OE XP(U_OE, U_C_OE)
-#define UE XP(U_UE, U_C_UE)
-#define ESZETT X(U_SS)
