@@ -14,14 +14,14 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-[BASE] = LAYOUT_planck_grid( /* shift keys on middle col are backups only, use HOME_T and HOME_N instead */
-    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,      TG(_NUM),_______,   KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
-    HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G,      DF(BASE),DF(_NOM),  KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O, 
+[BASE] = LAYOUT_planck_grid(
+    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,      TG(_NUM),XXXXXXX,   KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
+    HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G,      DF(BASE),DF(_CAL),  KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O, 
     KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,      XXXXXXX, XXXXXXX,   KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SCLN,
-    UNDO,    XXXXXXX, ESC_SYS, SPC_NAV, TAB_GRK,   KC_LSFT, KC_RSFT,   ENT_GRK, REP_NUM, BS_FN,   KC_WH_D, KC_WH_U
+    UNDO,    XXXXXXX, ESC_SYS, SPC_NAV, TAB_GRK,   XXXXXXX, XXXXXXX,   ENT_GRK, REP_NUM, BS_FN,   KC_WH_D, KC_WH_U
 ),
 
-[_NOM] = LAYOUT_planck_grid( /* deactivate home row non-shift mods */
+[_CAL] = LAYOUT_planck_grid( /* deactivate home row mods and swap repeat for OSM shift, callum mods layers */
     _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______,
     KC_A   , KC_R   , KC_S   , KC_T   , _______,   _______, _______,   _______, KC_N   , KC_E   , KC_I   , KC_O   ,
     _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______,
@@ -37,22 +37,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NAV] = LAYOUT_planck_grid(
     _______, _______, _______, _______, _______,   _______, _______,   KC_INS , KC_HOME, KC_UP,   KC_END,  KC_PGUP,
-//    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,   _______, _______,   KC_DEL , KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,
     OS_GUI , OS_ALT , OS_CTRL, OS_SHFT , _______,   _______, _______,   KC_DEL , KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,
     _______, _______, _______, _______, _______,   _______, _______,   _______, PASTE  , COPY   , CUT    , _______,
     _______, _______, _______, _______, _______,   _______, _______,   KC_ENT , XXXXXXX, KC_BSPC, _______, _______
 ),
 
-// [_SYM] = LAYOUT_planck_grid( /* depreciated, replaced by combo layer */
-//     _______, _______, _______, _______, _______,   _______, _______,   KC_AT  , KC_LCBR, KC_RCBR, KC_PERC, KC_ASTR,
-//     KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,   _______, _______,   KC_DLR , KC_LPRN, KC_RPRN, KC_AMPR, KC_CIRC,
-//     _______, _______, _______, _______, _______,   _______, _______,   KC_HASH, KC_LBRC, KC_RBRC, KC_EXLM, KC_QUES,
-//     _______, _______, _______, _______, _______,   _______, _______,   KC_ENT , KC_BSPC, KC_DEL , _______, _______
-// ),
-
 [_SYS] = LAYOUT_planck_grid(
     ADJUST , _______, _______, _______, _______,   _______, _______,   _______, KC_MPRV, KC_VOLU, KC_MNXT, KC_SLEP,
-//    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,   _______, _______,   _______, DSK_LT,  KC_VOLD, DSK_RT,  _______,
     OS_GUI , OS_ALT , OS_CTRL, OS_SHFT, _______,   _______, _______,   _______, DSK_LT,  KC_VOLD, DSK_RT,  _______,
     _______, _______, _______, _______, _______,   _______, _______,   _______, FZ_L1 ,  FZ_L2  , FZ_L3 ,  FZ_LE  ,
     _______, _______, _______, _______, _______,   _______, _______,   KC_MUTE, KC_MPLY, _______, _______, _______
@@ -60,7 +51,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NUM] = LAYOUT_planck_grid(
     KC_ESC,  KC_9,    KC_8,    KC_7,    KC_ASTR,   _______, _______,   _______, _______, _______, _______, _______,
-    // KC_ENT,  KC_3,    KC_2,    KC_1,    KC_PLUS,   _______, _______,   _______, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI,
     KC_ENT,  KC_3,    KC_2,    KC_1,    KC_PLUS,   _______, _______,   _______, OS_SHFT, OS_CTRL, OS_ALT , OS_GUI,
     KC_TAB,  KC_6,    KC_5,    KC_4,    KC_SLSH,   _______, _______,   _______, _______, _______, _______, _______,
     _______, _______, KC_DOT,  KC_0,    KC_MINS,   _______, _______,   _______, _______, _______, _______, _______
@@ -68,7 +58,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_FN] = LAYOUT_planck_grid(
     KC_F12 , KC_F9  , KC_F8  , KC_F7  , _______,   _______, _______,   _______, _______, _______, _______, _______,
- //   KC_F11 , KC_F3  , KC_F2  , KC_F1  , _______,   _______, _______,   _______, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI,
     KC_F11 , KC_F3  , KC_F2  , KC_F1  , _______,   _______, _______,   _______, OS_SHFT, OS_CTRL, OS_ALT , OS_GUI,
     KC_F10 , KC_F6  , KC_F5  , KC_F4  , _______,   _______, _______,   _______, _______, _______, _______, _______,
     _______, _______, KC_ESC , KC_SPC , KC_TAB ,   _______, _______,   _______, _______, _______, _______, _______
@@ -199,7 +188,33 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
 // in active typing flow (should practically remove any chance of mistriggering combos)
 static uint16_t non_combo_input_timer = 0;
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
-    return timer_elapsed(non_combo_input_timer) > 300 ? COMBO_TERM : 5;
+    switch (index) {
+    case QW_MTAB:
+    case FP_GUI:
+    case AR_CTLA:
+    case ST_BSLS:
+    case TG_EXCL:
+    case AR_CTLA_CAL:
+    case ST_BSLS_CAL:
+    case TG_EXCL_CAL:
+    case ZX_CUT:
+    case XC_COPY:
+    case CD_PASTE:
+    case JL_EQM:
+    case LU_LBRC:
+    case UY_RBRC:
+    case MN_QUES:
+    case NE_LPRN:
+    case EI_RPRN:
+    case MN_QUES_CAL:
+    case NE_LPRN_CAL:
+    case EI_RPRN_CAL:
+    case KH_EQL:
+    case HCOM_LCBR:
+    case COMDOT_RCBR:
+      return timer_elapsed(non_combo_input_timer) > 300 ? 25 : 5;
+    }
+    return 40;
 }
 
 

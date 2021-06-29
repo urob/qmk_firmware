@@ -22,7 +22,7 @@
 /* Misc settings */
 
 // Combo settings
-#define COMBO_TERM 25
+#define COMBO_TERM 30
 #define COMBO_TERM_PER_COMBO
 #define COMBO_MUST_TAP_PER_COMBO
 #define COMBO_VARIABLE_LEN

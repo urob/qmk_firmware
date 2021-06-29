@@ -14,7 +14,7 @@ void caps_word_disable(void);
 
 enum layer_names {
     BASE,
-    _NOM,
+    _CAL,
     _NAV,
     _NUM,
     _SYS,
