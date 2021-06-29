@@ -1,9 +1,8 @@
 #include QMK_KEYBOARD_H
 
-// All custom keycodes and aliases can be found in keymap.h
 #include "keymap.h"
-#include "unicode.c"
 #include "oneshot.h"
+#include "unicode.c"
 
 // To make combo dictionary work (see combos.def for definitinos)
 #if defined(COMBO_ENABLE)
@@ -21,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     UNDO,    XXXXXXX, ESC_SYS, SPC_NAV, TAB_GRK,   XXXXXXX, XXXXXXX,   ENT_GRK, REP_NUM, BS_FN,   KC_WH_D, KC_WH_U
 ),
 
-[_CAL] = LAYOUT_planck_grid( /* deactivate home row mods and swap repeat for OSM shift, callum mods layers */
+[_CAL] = LAYOUT_planck_grid( /* no HRMs + OSM shift on base, other mods on layers as OSMs using Callum's code */
     _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______,
     KC_A   , KC_R   , KC_S   , KC_T   , _______,   _______, _______,   _______, KC_N   , KC_E   , KC_I   , KC_O   ,
     _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______,
@@ -37,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NAV] = LAYOUT_planck_grid(
     _______, _______, _______, _______, _______,   _______, _______,   KC_INS , KC_HOME, KC_UP,   KC_END,  KC_PGUP,
-    OS_GUI , OS_ALT , OS_CTRL, OS_SHFT , _______,   _______, _______,   KC_DEL , KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,
+    OS_GUI , OS_ALT , OS_CTRL, OS_SHFT, _______,   _______, _______,   KC_DEL , KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,
     _______, _______, _______, _______, _______,   _______, _______,   _______, PASTE  , COPY   , CUT    , _______,
     _______, _______, _______, _______, _______,   _______, _______,   KC_ENT , XXXXXXX, KC_BSPC, _______, _______
 ),
