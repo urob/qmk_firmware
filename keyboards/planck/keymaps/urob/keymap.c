@@ -92,8 +92,6 @@ void caps_word_disable(void) {
 // Used to extract the basic tapping keycode from a dual-role key.
 // Example: GET_TAP_KC(MT(MOD_RSFT, KC_E)) == KC_E
 #define GET_TAP_KC(dual_role_key) dual_role_key & 0xFF
-
-
 void process_caps_word(uint16_t keycode, const keyrecord_t *record) {
     // Update caps word state
     if (caps_word_on) {
@@ -187,35 +185,22 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
 // in active typing flow (should practically remove any chance of mistriggering combos)
 static uint16_t non_combo_input_timer = 0;
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
-    switch (index) {
-    case QW_MTAB:
-    case FP_GUI:
-    case AR_CTLA:
-    case ST_BSLS:
-    case TG_EXCL:
-    case AR_CTLA_CAL:
-    case ST_BSLS_CAL:
-    case TG_EXCL_CAL:
-    case ZX_CUT:
-    case XC_COPY:
-    case CD_PASTE:
-    case JL_EQM:
-    case LU_LBRC:
-    case UY_RBRC:
-    case MN_QUES:
-    case NE_LPRN:
-    case EI_RPRN:
-    case MN_QUES_CAL:
-    case NE_LPRN_CAL:
-    case EI_RPRN_CAL:
-    case KH_EQL:
-    case HCOM_LCBR:
-    case COMDOT_RCBR:
-      return timer_elapsed(non_combo_input_timer) > 300 ? 25 : 5;
-    }
-    return 40;
+
+  if ((index >= QW_MTAB) && (index <= COMDOT_RCBR)) { // horizontal alpha combos
+    return timer_elapsed(non_combo_input_timer) > 300 ? 25 : 5;
+  } 
+
+  if (index >= WR_AT) return 40; // vertical combos
+
+  return COMBO_TERM;
+  
 }
 
+// requires combo_should trigger branch
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo) {
+  bool is_base = (layer_state_is(BASE) || layer_state_is(_CAL))
+  return is_base;
+  }
 
 
 bool is_oneshot_cancel_key(uint16_t keycode) {

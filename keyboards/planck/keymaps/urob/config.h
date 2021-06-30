@@ -26,6 +26,7 @@
 #define COMBO_TERM_PER_COMBO
 #define COMBO_MUST_TAP_PER_COMBO
 #define COMBO_VARIABLE_LEN
+#define COMBO_ONLY_FROM_LAYER 0
 
 // Recommended for heavy chording.
 #define QMK_KEYS_PER_SCAN 4
