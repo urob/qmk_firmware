@@ -198,7 +198,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
 // requires combo_should trigger branch
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo) {
-  bool is_base = (layer_state_is(BASE) || layer_state_is(_CAL))
+  bool is_base = (layer_state_is(BASE) || layer_state_is(_CAL));
   return is_base;
   }
 
