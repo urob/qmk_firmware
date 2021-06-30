@@ -17,16 +17,16 @@ COMB(CD_PASTE, PASTE,     KC_C,   KC_D)
 
 // right hand horizontal combos
 COMB(JL_EQM,   EQM,       KC_J,   KC_L)
-COMB(LU_LBRC,  KC_LBRC,   KC_L,   KC_U)
-COMB(UY_RBRC,  KC_RBRC,   KC_U,   KC_Y)
+COMB(LU_LCBR,  KC_LCBR,   KC_L,   KC_U)
+COMB(UY_RCBR,  KC_RCBR,   KC_U,   KC_Y)
 
 COMB(MN_QUES,  KC_QUES,   KC_M,   HOME_N)
 COMB(NE_LPRN,  KC_LPRN,   HOME_N, HOME_E)
 COMB(EI_RPRN,  KC_RPRN,   HOME_E, HOME_I)
 
 COMB(KH_EQL,   KC_EQL,    KC_K, KC_H)
-COMB(HCOM_LCBR,  KC_LCBR,   KC_H,   KC_COMM)
-COMB(COMDOT_RCBR,  KC_RCBR,   KC_COMM,   KC_DOT)
+COMB(HCOM_LBRC,  KC_LBRC,   KC_H,   KC_COMM)
+COMB(COMDOT_RBRC,  KC_RBRC,   KC_COMM,   KC_DOT)
 
 // left hand vertical combos
 COMB(WR_AT,    KC_AT,     KC_W,    HOME_R)
