@@ -4,7 +4,7 @@
 - switch to toggle home row mods on/off on the fly 
 - Callum OSM mods on navigation, number, system and function layers (always
   enabled, regardless of state of HRMs)
-- repeat key on right home thumb (repeats last input to reduce SFUs)
+- super-repeat key on right home thumb: Acts as one-shot shift after space, enter and pausing for more than 800ms; acts as "t" or "n" after left- or right-shifted alphas; and otherwise it repeats the last input to reduce SFUs
 - backspace morphs into delete when shifted
 - caps word via combo (a smart caps lock
   that deactivates itself at the end of the word)

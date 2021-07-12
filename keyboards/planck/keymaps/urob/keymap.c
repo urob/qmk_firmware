@@ -24,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______,
     KC_A   , KC_R   , KC_S   , KC_T   , _______,   _______, _______,   _______, KC_N   , KC_E   , KC_I   , KC_O   ,
     _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______,   _______, _______,   _______, SFT_NUM, _______, _______, _______
+    _______, _______, _______, _______, _______,   _______, _______,   _______, _______, _______, _______, _______
 ),
 
 [_GRK] = LAYOUT_planck_grid(
@@ -136,6 +136,7 @@ void process_caps_word(uint16_t keycode, const keyrecord_t *record) {
 }
 
 
+static uint16_t non_combo_input_timer = 0;
 uint16_t last_keycode = KC_NO;
 uint8_t last_modifier = 0;
 void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
@@ -156,7 +157,11 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
         }
     } else { /* repeat action defined here */
         // first check whether last key is a shifted alpha, if so repeat the HRM alpha used to trigger the shift
-        if ((last_modifier == MOD_BIT(KC_LSFT)) && (last_keycode >= KC_A) && (last_keycode <= KC_Z)) {
+         if ((last_keycode == KC_SPC) || (last_keycode == KC_ENT) || (timer_elapsed(non_combo_input_timer) > 800)) {
+            if (record->event.pressed) {
+               add_oneshot_mods(MOD_BIT(KC_LSFT));
+            }
+        } else if ((last_modifier == MOD_BIT(KC_LSFT)) && (last_keycode >= KC_A) && (last_keycode <= KC_Z)) {
             if (record->event.pressed) {
                register_code(KC_T);
             } else {
@@ -183,7 +188,6 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
 
 // the time of the last input, used to tweak the timing of combos depending on if I'm currently
 // in active typing flow (should practically remove any chance of mistriggering combos)
-static uint16_t non_combo_input_timer = 0;
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
   if ((index >= QW_MTAB) && (index <= COMDOT_RBRC)) { // horizontal alpha combos
