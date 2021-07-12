@@ -156,11 +156,12 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
                 break;
         }
     } else { /* repeat action defined here */
-        // first check whether last key is a shifted alpha, if so repeat the HRM alpha used to trigger the shift
+        // first check whether last keycode was shift or enter, or we paused for a while. It so morth to OS shift
          if ((last_keycode == KC_SPC) || (last_keycode == KC_ENT) || (timer_elapsed(non_combo_input_timer) > 800)) {
             if (record->event.pressed) {
                add_oneshot_mods(MOD_BIT(KC_LSFT));
             }
+        // next check whether last key is a shifted alpha, if so repeat the HRM alpha used to trigger the shift
         } else if ((last_modifier == MOD_BIT(KC_LSFT)) && (last_keycode >= KC_A) && (last_keycode <= KC_Z)) {
             if (record->event.pressed) {
                register_code(KC_T);
