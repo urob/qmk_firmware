@@ -48,7 +48,7 @@ enum custom_keycodes {
 // Misc keys
 #define UNDO     LCTL(KC_Z)
 #define REDO     LCTL(LSFT(KC_Z))
-#define CUT      LSFT(KC_DEL)  // LCTL(KC_X)
+#define CUT      LCTL(KC_X)    // LSFT(KC_DEL)
 #define COPY     LCTL(KC_INS)  // LCTL(KC_C)
 #define PASTE    LSFT(KC_INS)  // LCTL(KC_V)
 #define DSK_LT   LGUI(LCTL(KC_LEFT))  // prev desktop in Windows 10
