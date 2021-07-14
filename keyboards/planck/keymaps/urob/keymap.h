@@ -26,7 +26,6 @@ enum layer_names {
 enum custom_keycodes {
     CAPS_WORD = SAFE_RANGE,
     REPEAT,
-    
     OS_SHFT,
     OS_CTRL,
     OS_ALT,
