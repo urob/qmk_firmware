@@ -157,7 +157,7 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
         }
     } else { /* repeat action defined here */
         // first check whether last keycode was shift or enter, or we paused for a while. It so morth to OS shift
-         if ((last_keycode == KC_SPC) || (last_keycode == KC_ENT) || (timer_elapsed(non_combo_input_timer) > 300)) {
+         if ((last_keycode == KC_SPC) || (last_keycode == KC_ENT) || (timer_elapsed(non_combo_input_timer) > 400)) {
             if (record->event.pressed) {
                add_oneshot_mods(MOD_BIT(KC_LSFT));
             }
