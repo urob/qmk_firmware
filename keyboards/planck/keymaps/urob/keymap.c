@@ -212,6 +212,7 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
     case SPC_NAV:
     case SFT_NUM:
+    case REP_NUM:
         return true;
     default:
         return false;
@@ -222,6 +223,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
     case SPC_NAV:
     case SFT_NUM:
+    case REP_NUM:
     case KC_LSFT:
     case OS_SHFT:
     case OS_CTRL:
