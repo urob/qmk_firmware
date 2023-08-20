@@ -1,3 +1,6 @@
+> [!NOTE]
+> This repo is no longer maintained. **My current keyboard configuration can be found [here](https://github.com/urob/zmk-config).**
+
 ## Keymap configuration for OLKB Planck
 
 - layout based on Miryoku with dual purpose keys on home row and on thumbs to hold modifiers and to access layers
